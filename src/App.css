@@ -9,9 +9,11 @@
 body, html {
   margin: 0;
   padding: 0;
+  overflow: auto; 
   width: 100%;
   height: 100%;
 }
+
 
 canvas {
   display: block; /* Remove extra space below the canvas */
@@ -58,7 +60,13 @@ canvas {
   overflow: auto !important; /* Use !important to override other styles */
 }
 
-/* Add this to your CSS */
 .content {
-  min-height: 150vh; /* Ensure there's enough height for scrolling */
+  position: relative;
+  z-index: 1; /* Make sure this is above the canvas */
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 100%); /* Allow enough height for scrolling */
+}
+
+canvas {
+  pointer-events: none; /* Disable pointer events for the canvas */
 }

@@ -1,0 +1,49 @@
+/* */
+.header {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: center;
+    padding: 10px; /* Reduced padding for a smaller header */
+    background-color: black; /* Match your app's theme */
+    color: white; /* Text color */
+    position: fixed; /* Make the header fixed */
+    top: 0; /* Stick to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.content {
+    padding-top: 60px; /* Add padding to the top to avoid content overlap */
+}
+
+.header-left h1 {
+    font-size: 1.5em; /* Smaller font size for the name */
+    margin: 0; /* Remove default margin */
+}
+
+.header-right {
+    flex: 1;
+    text-align: right; /* Align right section to the right */
+}
+
+.header-right ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.header-right li {
+    display: inline; /* Display items inline */
+    margin: 0 10px; /* Reduced space between items */
+}
+
+.header-right a {
+    color: #61dafb; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-size: 0.9em; /* Smaller font size for links */
+}
+
+.header-right a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

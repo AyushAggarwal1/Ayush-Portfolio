@@ -6,12 +6,12 @@
   font-size: 2em;
   background-color: black;
   transition: opacity 0.5s ease-in;
-  overflow: hidden; /* Prevent scroll during welcome */
+  /* overflow: hidden; Prevent scroll during welcome */
 }
 
 .rainbow-text {
   display: inline-block; /* For animation effects */
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, rgb(79, 9, 130), rgb(241, 139, 241));
+  background: linear-gradient(90deg, red, orange, yellow, green,rgb(241, 139, 241), blue, rgb(79, 9, 130));
   background-size: 200%; /* This allows for the animation to move */
   -webkit-background-clip: text; /* Clip background to text */
   color: transparent; /* Text color must be transparent for gradient effect */

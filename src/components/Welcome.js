@@ -16,7 +16,7 @@ const Welcome = () => {
       } else {
         clearInterval(intervalId); // Stop when all letters are displayed
       }
-    }, 100); // Adjust the speed of letter appearance here
+    }, 50); // Adjust the speed of letter appearance here
 
     return () => clearInterval(intervalId); // Clean up on component unmount
   }, [message]);
@@ -25,7 +25,7 @@ const Welcome = () => {
     setAnimationClass("fade-in-scale"); // Add animation class on mount
     const timer = setTimeout(() => {
       setAnimationClass(""); // Reset animation class after the animation
-    }, 1000); // Duration of the animation
+    }, 50); // Duration of the animation
 
     return () => clearTimeout(timer); // Clean up on unmount
   }, []);

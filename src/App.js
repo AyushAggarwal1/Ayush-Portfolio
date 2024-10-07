@@ -11,34 +11,36 @@ const App = () => {
   const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
-    // Disable scrolling on the body while showing the welcome message
-    document.body.style.overflow = 'hidden';
-
     const timer = setTimeout(() => {
       setShowWelcome(false);
-      document.body.style.overflow = 'auto'; // Enable scrolling after welcome
-    }, 3500);
+    }, 2000);
 
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = 'auto'; // Cleanup: ensure overflow is enabled
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {showWelcome ? (
         <Welcome />
       ) : (
         <>
-          <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+          <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
             <XYZLoaderScene />
           </Canvas>
-          <div style={{ position: 'relative', zIndex: 1 }} className="content">
+          <div style={{ position: 'relative', zIndex: 1, flex: '1 0 auto', overflowY: 'auto' }} className="content">
+          <div id="top" style={{ position: 'absolute', top: 0, left: 0 }} /> {/* Scroll anchor */}
             <Header />
             <About />
             <Projects />
             <Contact />
+            {/* For demonstration purposes, adding multiple sections to enable scrolling */}
+            {[...Array(10)].map((_, index) => (
+              <div key={index}>
+                <About />
+                <Projects />
+                <Contact />
+              </div>
+            ))}
           </div>
         </>
       )}
