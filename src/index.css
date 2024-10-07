@@ -5,6 +5,21 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* Reset styles for all elements */
+*, *::before, *::after {
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  width: 100%;
+  height: 100%;
+}
+
 canvas {
-  display: block; /* Ensures the canvas takes the full space */
+  display: block; /* Remove extra space below the canvas */
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
 }

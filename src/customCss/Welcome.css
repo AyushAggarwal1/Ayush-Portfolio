@@ -1,0 +1,10 @@
+.welcome-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2em;
+    background-color: black; /* or any background color you prefer */
+    transition: opacity 0.5s ease-in;
+  }
+  
