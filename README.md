@@ -1,4 +1,5 @@
-# Ayush-Portfolio
+# Ayush Portfolio
 
-Visit - https://ayushaggarwalportfolio.netlify.app/
+Hosted on - https://ayushaggarwalportfolio.netlify.app/
 
+Build with ❤️ by Ayush_Aggarwal

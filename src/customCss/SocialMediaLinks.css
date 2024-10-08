@@ -1,0 +1,51 @@
+.social-media-links {
+    position: fixed; /* Fixed positioning for the sidebar */
+    top: 50%; /* Center vertically */
+    left: 20px; /* Adjust to your preference */
+    transform: translateY(-50%); /* Center vertically */
+    display: flex;
+    flex-direction: column; /* Stack icons vertically */
+    z-index: 1000; /* Ensure it's always on top */
+}
+
+.social-media-links a {
+    margin: 10px 0; /* Space between icons */
+    color: white; /* Icon color */
+    font-size: 24px; /* Adjust size */
+    text-decoration: none; /* Remove underline */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effects for links */
+.social-media-links a:hover {
+    color: #61dafb; /* Change color on hover */
+    transform: scale(1.2) rotate(10deg); /* Scale up and rotate on hover */
+}
+
+.social-media-links a img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-media-links a:hover img {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(30%) saturate(1000%) hue-rotate(160deg) brightness(95%) contrast(90%);
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Bounce effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.social-media-links a:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Prevent horizontal scroll */
+body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}

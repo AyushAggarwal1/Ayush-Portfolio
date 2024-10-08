@@ -1,0 +1,100 @@
+.header {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: center;
+    padding: 5px; /* Reduced padding for a smaller header */
+    background-color: black; /* Match your app's theme */
+    color: white; /* Text color */
+    position: fixed; /* Make the header fixed */
+    top: 0; /* Stick to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.header-left {
+    flex: 1; /* Allow space for hamburger icon */
+    text-align: left; /* Align the name to the left */
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center align items vertically */
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 10px; /* Space between name and hamburger icon */
+    display: none; /* Hide by default */
+}
+
+.header-right {
+    display: flex; /* Default display for desktop */
+    flex: 1;
+    justify-content: flex-end; /* Align items to the right */
+}
+
+.header-right ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.header-right li {
+    display: inline; /* Display items inline */
+    margin: 0 10px; /* Reduced space between items */
+}
+
+.header-right a {
+    color: #61dafb; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-size: 0.9em; /* Smaller font size for links */
+}
+
+.header-right a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Styles for mobile */
+@media (max-width: 768px) {
+    .header-left {
+        flex-direction: row; /* Keep items in a row */
+        justify-content: space-between; /* Space between name and hamburger */
+        margin-left: 10px;
+    }
+
+    .header-right {
+        display: none; /* Hide right menu by default */
+        position: absolute; /* Position it absolutely */
+        top: 60px; /* Below the header */
+        left: 0;
+        right: 0;
+        background-color: black; /* Same background as header */
+        flex-direction: column; /* Stack items vertically */
+        z-index: 999; /* Ensure it appears above content */
+        text-align: center; /* Center align items */
+    }
+
+    .header-right.open {
+        display: flex; /* Show the menu when open */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+        margin-left: 10px; /* Space between name and hamburger icon */
+    }
+
+    /* Change menu items to be displayed in list form */
+    .header-right ul {
+        width: 100%; /* Full width for menu */
+        display: flex; /* Flex display to align items */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .header-right li {
+        display: block; /* Each item takes a full line */
+        margin: 10px 0; /* Space between items */
+    }
+}

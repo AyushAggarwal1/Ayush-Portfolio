@@ -1,0 +1,16 @@
+.footer {
+    background-color: black; /* Footer background color */
+    color: white; /* Text color */
+    text-align: center; /* Center align text */
+    padding: 10px; /* Padding around the text */
+    position: fixed; /* Fixed positioning */
+    bottom: 0; /* Stick to the bottom */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 999; /* Ensure it stays on top */
+  }
+  
+  .footer p {
+    margin: 0; /* Remove default margin */
+  }
+  
