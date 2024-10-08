@@ -5,13 +5,6 @@ import Resume from '../../src/assets/Ayush_Aggarwal_Resume.pdf';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for menu visibility
 
-  const scrollToTop = () => {
-    const topElement = document.getElementById('top');
-    if (topElement) {
-      topElement.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the top
-    }
-  };
-
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev); // Toggle menu visibility
   };
@@ -20,10 +13,18 @@ const Header = () => {
     setIsMenuOpen(false); // Close the menu
   };
 
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the section
+    }
+    closeMenu(); // Close the menu after selecting an item
+  };
+
   return (
     <header className="header">
       <div className="header-left">
-        <h1 onClick={scrollToTop} style={{ cursor: 'pointer', textAlign: 'center' }}>Ayush Aggarwal</h1>
+        <h1 onClick={() => scrollToSection('top')} style={{ cursor: 'pointer', textAlign: 'center' }}>Ayush Aggarwal</h1>
         <button className="hamburger" onClick={toggleMenu}>
           ☰
         </button>
@@ -31,11 +32,11 @@ const Header = () => {
       <div className={`header-right ${isMenuOpen ? 'open' : ''}`}>
         <nav>
           <ul>
-            <li><a href="#about" onClick={closeMenu}>About Me</a></li>
-            <li><a href="#experience" onClick={closeMenu}>Experience</a></li>
-            <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
-            <li><a href="#contact" onClick={closeMenu}>Contact Me</a></li>
-            <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf" onClick={closeMenu}>Download CV</a></li>
+            <li><a onClick={() => scrollToSection('about')}>About Me</a></li>
+            <li><a onClick={() => scrollToSection('experience')}>Experience</a></li>
+            <li><a onClick={() => scrollToSection('projects')}>Projects</a></li>
+            <li><a onClick={() => scrollToSection('contact')}>Contact Me</a></li>
+            <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf">Download CV</a></li>
           </ul>
         </nav>
       </div>

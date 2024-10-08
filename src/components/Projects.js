@@ -2,7 +2,7 @@ import React from 'react';
 
 const Projects = () => {
   return (
-    <section style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
+    <section id="projects" style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
       <h2>My Projects</h2>
       <ul>
         <ul>Project 1: [Description]</ul>
