@@ -23,9 +23,7 @@ const Header = () => {
             <li><a href="#projects">Projects</a></li>
             {/* <li><a href="#skills">Skills</a></li> */}
             <li><a href="#contact">Contact Me</a></li>
-            <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf">
-                Download CV
-              </a></li> {/* Update with actual path to your resume */}
+            <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf">Download CV</a></li>
           </ul>
         </nav>
       </div>
