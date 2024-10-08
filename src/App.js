@@ -25,11 +25,13 @@ const App = () => {
         <Welcome />
       ) : (
         <>
-          <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-            <XYZLoaderScene />
-          </Canvas>
+          <div className="canvas-container"> {/* Added a container for the Canvas */}
+            <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+              <XYZLoaderScene />
+            </Canvas>
+          </div>
           <div style={{ position: 'relative', zIndex: 1, flex: '1 0 auto', overflowY: 'auto' }} className="content">
-          <div id="top" style={{ position: 'absolute', top: 0, left: 0 }} /> {/* Scroll anchor */}
+            <div id="top" style={{ position: 'absolute', top: 0, left: 0 }} /> {/* Scroll anchor */}
             <Header />
             <About />
             <Projects />
