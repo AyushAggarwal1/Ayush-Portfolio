@@ -1,0 +1,45 @@
+.popup-overlay {
+    position: fixed; /* Cover the entire screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex; /* Center the popup */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    z-index: 1000; /* On top of other elements */
+}
+
+.popup {
+    background-color: #222; /* Dark background for the popup */
+    color: #fff; /* White text */
+    padding: 20px; /* Inner padding */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    text-align: center; /* Center text */
+    position: relative; /* Relative positioning for close button */
+}
+
+.close-button {
+    position: absolute; /* Positioning the close button */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+    background: none; /* No background */
+    border: none; /* No border */
+    color: #fff; /* White color */
+    font-size: 1.5rem; /* Larger font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.close-button:hover {
+    color: #ffcc00; /* Change color on hover */
+}
+
+h2 {
+    margin-bottom: 10px; /* Space below heading */
+}
+
+p {
+    font-size: 1rem; /* Font size for paragraph */
+}
