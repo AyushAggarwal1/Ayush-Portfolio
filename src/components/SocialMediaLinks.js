@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faMedium, faDocker } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import NotionIcon from '../../src/assets/notion_svg.svg';
 
 import '../customCss/SocialMediaLinks.css'; // Create a CSS file for styles
@@ -8,6 +9,9 @@ import '../customCss/SocialMediaLinks.css'; // Create a CSS file for styles
 const SocialMediaLinks = () => {
     return (
         <div className="social-media-links">
+            <a href="mailto:ayushaggarwal1136@gmail.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faEnvelope} /> {/* Gmail icon */}
+            </a>
             <a href="https://github.com/AyushAggarwal1" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faGithub} />
             </a>
