@@ -1,5 +1,6 @@
 import React from 'react';
 import '../customCss/Header.css'; // Import your CSS file for styling
+import Resume from '../../src/assets/Ayush_Aggarwal_Resume.pdf'
 
 const Header = () => {
   const scrollToTop = () => {
@@ -22,7 +23,9 @@ const Header = () => {
             <li><a href="#projects">Projects</a></li>
             {/* <li><a href="#skills">Skills</a></li> */}
             <li><a href="#contact">Contact Me</a></li>
-            <li><a href="/path/to/resume.pdf" download>Download Resume</a></li> {/* Update with actual path to your resume */}
+            <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf">
+                Download CV
+              </a></li> {/* Update with actual path to your resume */}
           </ul>
         </nav>
       </div>
