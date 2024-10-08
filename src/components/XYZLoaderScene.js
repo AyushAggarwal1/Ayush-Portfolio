@@ -34,8 +34,6 @@ const XYZLoaderScene = () => {
     const loader = new XYZLoader();
     loader.load('/models/xyz/helix_201.xyz', 
       (geometry) => {
-        console.log("Model loaded", geometry);  // Log when the model is loaded
-
         geometry.center();
 
         const vertexColors = geometry.hasAttribute('color');

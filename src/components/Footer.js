@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p>
-        Build with <span style={{ textDecoration: 'line-through', margin: '0 5px' }}>❤️</span> Code by Ayush
+        Build with ❤️ by Ayush
       </p>
     </footer>
   );

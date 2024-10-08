@@ -14,7 +14,7 @@ const CalendlyBadge = () => {
     script.onload = () => {
       window.Calendly.initBadgeWidget({
         url: 'https://calendly.com/teamwithayush/15min',
-        text: 'Schedule time with me',
+        text: 'Meet with Me',
         color: '#0069ff',
         textColor: '#ffffff',
         branding: undefined,
