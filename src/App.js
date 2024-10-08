@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import XYZLoaderScene from './components/XYZLoaderScene';
 import CalendlyBadge from './components/CalendlyBadge';
+import SocialMediaLinks from './components/SocialMediaLinks';
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -37,6 +38,7 @@ const App = () => {
             <Projects />
             <Contact />
             <CalendlyBadge />
+            <SocialMediaLinks /> 
             {/* For demonstration purposes, adding multiple sections to enable scrolling */}
             {[...Array(10)].map((_, index) => (
               <div key={index}>

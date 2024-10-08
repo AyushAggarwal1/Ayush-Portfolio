@@ -5,9 +5,9 @@ const Projects = () => {
     <section style={{ color: 'white', padding: '20px', textAlign: 'center' }}>
       <h2>My Projects</h2>
       <ul>
-        <li>Project 1: [Description]</li>
-        <li>Project 2: [Description]</li>
-        <li>Project 3: [Description]</li>
+        <ul>Project 1: [Description]</ul>
+        <ul>Project 2: [Description]</ul>
+        <ul>Project 3: [Description]</ul>
       </ul>
     </section>
   );
