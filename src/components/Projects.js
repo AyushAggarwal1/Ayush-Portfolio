@@ -38,6 +38,8 @@ const projectsData = [
     title: "Music Player",
     tech: "HTML, CSS, JavaScript",
     description: "Music player web application using Html and CSS.",
+    reportLink: "https://ayushmusicplayer.netlify.app/",
+    reportLabel: "Hosted on Netlify",
     githubLink: "https://github.com/AyushAggarwal1/Coding-Ninjas-Music-Player",
   },
 ];

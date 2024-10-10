@@ -32,10 +32,10 @@ const Header = () => {
       <div className={`header-right ${isMenuOpen ? 'open' : ''}`}>
         <nav>
           <ul>
-            <li><a onClick={() => scrollToSection('about')}>About Me</a></li>
-            <li><a onClick={() => scrollToSection('experience')}>Experience</a></li>
-            <li><a onClick={() => scrollToSection('projects')}>Projects</a></li>
-            <li><a onClick={() => scrollToSection('contact')}>Contact Me</a></li>
+            <li><a href="#" onClick={() => scrollToSection('about')}>About Me</a></li>
+            <li><a href="#" onClick={() => scrollToSection('experience')}>Experience</a></li>
+            <li><a href="#" onClick={() => scrollToSection('projects')}>Projects</a></li>
+            <li><a href="#" onClick={() => scrollToSection('contact')}>Contact Me</a></li>
             <li><a href={Resume} download="Ayush_Aggarwal_Resume.pdf">Download CV</a></li>
           </ul>
         </nav>
