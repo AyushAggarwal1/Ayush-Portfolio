@@ -21,7 +21,7 @@ const SocialMediaLinks = () => {
             <a href="https://medium.com/@ayushaggarwal1136" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faMedium} />
             </a>
-            <a href="https://knowing-spoonbill-268.notion.site/Personal-Website-833e75a9a45b43d0b73971bf5402ff9d" target="_blank" rel="noopener noreferrer">
+            <a href="https://knowing-spoonbill-268.notion.site/Welcome-to-Ayush-s-Notion-World-833e75a9a45b43d0b73971bf5402ff9d" target="_blank" rel="noopener noreferrer">
                 <img src={NotionIcon} alt="Notion" style={{ width: '24px', height: '24px' }} />
             </a>
             <a href="https://hub.docker.com/u/ayush1136" target="_blank" rel="noopener noreferrer">
