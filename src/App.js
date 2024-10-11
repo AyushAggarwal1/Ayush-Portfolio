@@ -9,9 +9,11 @@ import XYZLoaderScene from './components/XYZLoaderScene';
 import CalendlyBadge from './components/CalendlyBadge';
 import SocialMediaLinks from './components/SocialMediaLinks';
 import Footer from './components/Footer';
+import UnderConstructionPopup from './components/UnderConstructionPopup'; // Import the popup component
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(true); // Set to true to show popup on load
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,6 +22,16 @@ const App = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      const timer = setTimeout(() => {
+        setIsPopupOpen(false);
+      }, 3000); // Set duration (e.g., 3000ms = 3 seconds)
+
+      return () => clearTimeout(timer);
+    }
+  }, [isPopupOpen]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
@@ -41,23 +53,15 @@ const App = () => {
             <CalendlyBadge />
             <SocialMediaLinks /> 
             <Footer />
-            {/* For demonstration purposes, adding multiple sections to enable scrolling
-            {[...Array(10)].map((_, index) => (
-              <div key={index}>
-                <About />
-                <Projects />
-                <Contact />
-              </div>
-            ))} */}
           </div>
         </>
       )}
+      <UnderConstructionPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} /> {/* Render the popup */}
     </div>
   );
 };
 
 export default App;
-
 
 
 // after complete delete underConstructionPopup.js and css
