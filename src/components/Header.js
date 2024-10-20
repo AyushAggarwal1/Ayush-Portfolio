@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <h1 onClick={() => scrollToSection('top')} style={{ cursor: 'pointer', textAlign: 'center' }}>Ayush Aggarwal</h1>
+        <h1 onClick={() => scrollToSection('top')} style={{ cursor: 'pointer', textAlign: 'center' }}>Ayush</h1>
         <button className="hamburger" onClick={toggleMenu}>
           ☰
         </button>
