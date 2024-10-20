@@ -77,7 +77,6 @@
   .about-title {
     font-size: 2.5rem; /* Larger title font size for emphasis */
     margin-bottom: 20px; /* Spacing below the title */
-    text-transform: uppercase; /* Uppercase for emphasis */
     letter-spacing: 2px; /* Slight letter spacing for readability */
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9); /* Dark shadow for depth */
     position: relative; /* Positioning for the decorative effect */
