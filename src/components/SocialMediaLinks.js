@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faMedium, faDocker } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import NotionIcon from '../../src/assets/notion_svg.svg';
 
 import '../customCss/SocialMediaLinks.css'; // Create a CSS file for styles
@@ -26,6 +27,9 @@ const SocialMediaLinks = () => {
             </a>
             <a href="https://hub.docker.com/u/ayush1136" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faDocker} />
+            </a>
+            <a href="https://www.beacons.ai/ayushaggarwal" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faLink} /> {/* link icon */}
             </a>
         </div>
     );
