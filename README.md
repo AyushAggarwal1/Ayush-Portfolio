@@ -2,4 +2,4 @@
 
 Hosted on - https://ayushaggarwalportfolio.netlify.app/
 
-Build with ❤️ by Ayush_Aggarwal
+Build with ❤️ by Ayush

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../customCss/Welcome.css'; // Import any CSS styling for the welcome component
 
 const Welcome = () => {
-  const message = "Welcome to My Virtual World!"; // Your welcome message
+  const message = "Welcome to Ayush's Virtual World!"; // Your welcome message
   const [displayedLetters, setDisplayedLetters] = useState("");
   const [animationClass, setAnimationClass] = useState("");
 
