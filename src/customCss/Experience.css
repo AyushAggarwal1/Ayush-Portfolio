@@ -1,0 +1,263 @@
+/* Experience Section */
+#experience {
+  background-color: transparent; /* Fully transparent background */
+  color: #fff; /* White text */
+  padding: 50px 0; /* Padding for the section */
+  position: relative; /* For the pseudo-elements */
+  overflow: hidden; /* Prevent overflow from animated elements */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+
+}
+
+#experience::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  /* background: radial-gradient(circle, rgba(97, 218, 251, 0.2), transparent); */
+  transition: transform 0.5s ease;
+  transform: translateX(-50%) translateY(-50%) scale(0); /* Start small */
+  z-index: 0; /* Behind other elements */
+}
+
+#experience:hover::before {
+  transform: translateX(-50%) translateY(-50%) scale(1); /* Expand on hover */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  position: relative; /* For the shadow effect */
+  z-index: 1; /* On top of the pseudo-element */
+}
+
+/* Container for experience cards */
+.experience-container {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically */
+  align-items: center; /* Center cards horizontally */
+}
+
+/* Experience Card Styles */
+.experience-card {
+  background: rgba(255, 255, 255, 0.1); /* Slightly opaque background */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside cards */
+  width: 80%; /* Width of cards */
+  max-width: 600px; /* Maximum width */
+  margin: 10px 0; /* Margin between cards */
+  position: relative; /* For positioning of children */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animation for card hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  backdrop-filter: blur(10px); /* Blur effect for background */
+  z-index: 1; /* On top of the pseudo-element */
+}
+
+.experience-card:hover {
+  transform: translateY(-10px); /* Slight lift on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Icon Styles */
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; /* Space between icon and title */
+  transition: transform 0.3s; /* Animation for icon hover */
+}
+
+.icon img {
+  width: 40px; /* Width for images */
+  height: 40px; /* Height for images */
+}
+
+.experience-card:hover .icon img {
+  transform: scale(1.2) rotate(10deg); /* Scale and rotate the icon on hover */
+}
+
+/* Title and Location/Date */
+h3 {
+  font-size: 1.8em; /* Title size */
+  margin-bottom: 10px; /* Space below title */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.experience-card h3 {
+  color: #61dafb; /* Change title color on hover */
+}
+
+p {
+  font-size: 1em; /* Font size for location/date */
+  margin-bottom: 15px; /* Space below date */
+  opacity: 0.8; /* Slightly faded text */
+  transition: opacity 0.3s; /* Smooth opacity transition */
+}
+
+.experience-card:hover p {
+  opacity: 1; /* Full opacity on hover */
+}
+
+/* Responsibilities List */
+.responsibilities {
+  list-style-type: disc; /* Bullet points */
+  padding-left: 20px; /* Indentation */
+}
+
+.responsibility-item {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+/* Connecting Lines */
+.line {
+  width: 2px; /* Line width */
+  background-color: rgba(97, 218, 251, 0.7); /* Line color with transparency */
+  height: 50px; /* Line height */
+  position: relative; /* For positioning the arrow */
+  transition: height 0.3s, background-color 0.3s; /* Transition for line hover */
+}
+
+.line:hover {
+  background-color: #61dafb; /* Change line color on hover */
+  height: 70px; /* Increase height on hover */
+}
+
+/* Arrow styling */
+.line::after {
+  content: '';
+  position: absolute;
+  left: 50%; /* Center the arrow horizontally */
+  top: -8px; /* Position the arrow above the line */
+  border: solid transparent; /* Create the arrow */
+  border-width: 0 5px 5px 5px; /* Arrow size */
+  border-bottom-color: rgba(97, 218, 251, 0.7); /* Arrow color with transparency */
+  transform: translateX(-50%) scale(1); /* Center and scale the arrow */
+  transition: border-bottom-color 0.3s, transform 0.3s; /* Transition for arrow hover */
+}
+
+.line:hover::after {
+  border-bottom-color: #61dafb; /* Change arrow color on hover */
+  transform: translateX(-50%) scale(1.1); /* Scale up the arrow on hover */
+}
+
+/* Gap for Hover Effects */
+.gap-hover {
+  display: none; /* Initially hidden */
+  background: rgba(97, 218, 251, 0.1); /* Background for hover effect */
+  padding: 10px; /* Padding for gap */
+  border-radius: 5px; /* Rounded corners for gap */
+  margin-top: 10px; /* Space above gap */
+  text-align: center; /* Center text */
+  transition: background 0.3s ease; /* Transition for background change */
+}
+
+/* Show gap hover on card hover */
+.experience-card:hover .gap-hover {
+  display: block; /* Show gap on hover */
+}
+
+/* CV Download Button Styles */
+
+.cv-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2); /* Light overlay */
+  border-radius: 5px; /* Match button corners */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s; /* Transition for overlay */
+  z-index: -1; /* Behind the button */
+}
+
+.cv-button:hover {
+  background-color: #5cb6e4; /* Darken background on hover */
+  transform: translateY(-3px); /* Lift the button slightly */
+}
+
+.cv-button:hover::before {
+  opacity: 1; /* Show overlay on hover */
+}
+
+/* CV Download Button Styles */
+.cv-button {
+  display: block; /* Change to block for full width */
+  background-color: #61dafb; /* Button background color */
+  color: #000; /* Button text color */
+  padding: 8px 12px; /* Reduced padding for a shorter button */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.1em; /* Slightly smaller font size */
+  text-decoration: none; /* Remove underline from link */
+  margin: 20px auto; /* Center the button and add vertical margin */
+  transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+  z-index: 1; /* Above other elements */
+  position: relative; /* For pseudo-elements */
+  text-align: center; /* Center text within button */
+}
+
+.freelance-message {
+  margin-top: 20px; /* Space above the message */
+  font-size: 1.2rem; /* Adjust the font size */
+  color: #fff; /* White color for contrast */
+  text-align: center; /* Center the message */
+  font-weight: bold; 
+  padding: 20px 20px; /* Add left and right padding */
+}
+
+.social-links-message {
+  text-align: center; /* Center the message */
+  margin: 20px auto; /* Add space above and center horizontally */
+  font-size: 1.2em; /* Increase font size */
+  padding: 20px 20px; /* Add left and right padding */
+}
+
+.social-links-message a {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+  padding: 5px 10px; /* Add padding for a button-like feel */
+  border-radius: 5px; /* Rounded corners */
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background */
+}
+
+/* Styles for Medium and Notion links */
+.social-links-message a.medium,
+.social-links-message a.notion {
+  font-weight: bold; /* Bold text */
+  text-decoration: underline; /* Underline text */
+}
+
+.social-links-message a.medium:hover,
+.social-links-message a.notion:hover {
+  text-decoration: underline; /* Keep underline on hover */
+  background-color: rgba(0, 123, 255, 0.2); /* Darker background on hover */
+}
+
+.social-links-message a.highlight {
+  font-weight: bold; /* Bold text */
+  color: #0056b3; /* Darker link color for emphasis */
+}
+
+.social-links-message a:hover {
+  text-decoration: underline; /* Underline on hover */
+  background-color: rgba(0, 123, 255, 0.2); /* Darker background on hover */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .experience-card {
+    width: 90%; /* Full width on smaller screens */
+  }
+
+  h2 {
+    font-size: 2em; /* Smaller title on mobile */
+  }
+}
