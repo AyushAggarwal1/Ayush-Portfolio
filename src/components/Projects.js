@@ -5,13 +5,13 @@ import '../customCss/Projects.css'; // Adjust the path as needed
 
 const projectsData = [
   {
-    title: "Resume Selector",
-    description: "Resume-Selector is a machine learning project designed to analyze and classify resumes based on industry sectors. Using a dataset from Kaggle, this project employs various preprocessing techniques and machine learning algorithms to streamline the hiring process.",
-    tech: "Python, Numpy, Pandas, NLTK for natural language processing, Scikit-learn",
-    githubLink: "https://github.com/AyushAggarwal1/Resume-Selector",
-    reportLink: "https://drive.google.com/file/d/169JzoSc4Id69lrsHUVpS9xb9gdKA9QpK/view",
+    title: "Resume Selector",   // project title
+    description: "Resume-Selector is a machine learning project designed to analyze and classify resumes based on industry sectors. Using a dataset from Kaggle, this project employs various preprocessing techniques and machine learning algorithms to streamline the hiring process.",    // project description
+    tech: "Python, Numpy, Pandas, NLTK for natural language processing, Scikit-learn",    // skill used
+    githubLink: "https://github.com/AyushAggarwal1/Resume-Selector",    // github link
+    reportLink: "https://drive.google.com/file/d/169JzoSc4Id69lrsHUVpS9xb9gdKA9QpK/view",     // report link
     reportLabel: "View Research Paper",  // Label for the report link
-    presentationLink: "",  // Presentation link
+    presentationLink: "",       // presentation link
   },
 
   {

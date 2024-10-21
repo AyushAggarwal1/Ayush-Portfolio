@@ -12,6 +12,7 @@ const Experience = () => {
         <FaBriefcase /> Experience
       </h2>
       <div className="experience-container">
+        {/* experience 1 */}
         <ExperienceItem
           title="Product Management, AccuKnox"
           location="Remote, US"
@@ -22,8 +23,10 @@ const Experience = () => {
             "Collaborated with cross‑functional teams, including developers, designers, and quality assurance, to ensure timely product delivery and adherence to specifications.",
             "Engaged with clients to gather product requirements, provide updates, and incorporate feedback into the development cycle."
           ]}
-          position="left"
+          position="left"     // positin of exp card
         />
+
+        {/* experience 2 */}
         <div className="line" />
         <ExperienceItem
           title="Product Quality Eng., I2v Sys"
@@ -35,8 +38,10 @@ const Experience = () => {
             "Produced stakeholder reports, aligning product messaging with marketing and sales teams, contributing to a 15% increase in sales conversions.",
             "Led daily stand‑up meetings and sprint reviews to ensure team alignment, resulting in a 10% increase in sprint efficiency."
           ]}
-          position="right"
+          position="right"     // positin of exp card      
         />
+
+        {/* experience 3 */}
         <div className="line" />
         <ExperienceItem
           title="Product Associate Intern, Techvins"
@@ -47,10 +52,12 @@ const Experience = () => {
             "Analyzed user data to drive product enhancements, boosting engagement by 25% and retention by 15%.",
             "Implemented SEO strategies on the website, resulting in a significant increase in organic traffic.",
           ]}
-          position="left"
+          position="left"     // positin of exp card
         />
       </div>
 
+
+      {/* soical links */}
       <div className="social-links-message">
         <p>
           Interested in my work? Don't forget to explore my 
@@ -65,6 +72,8 @@ const Experience = () => {
         </p>
       </div>
 
+
+      {/* beacon link */}
       <p className="freelance-message">
         Want me to work for you? Connect with me on my social channels!
         <a
@@ -75,6 +84,8 @@ const Experience = () => {
         ><FontAwesomeIcon icon={faLink} className="contact-icon" /></a>
       </p>
 
+
+      {/* resume link */}
       <a href={Resume} download="Ayush_Aggarwal_Resume.pdf" class="cv-button">Download CV</a>
     </section>
   );

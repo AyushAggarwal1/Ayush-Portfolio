@@ -11,7 +11,7 @@ const UnderConstructionPopup = ({ isOpen, onClose }) => {
                     &times; {/* Cross button */}
                 </button>
                 <h2>Under Construction</h2>
-                {/* <p>Still under construction.</p> */}
+                <p>Still under construction.</p>
             </div>
         </div>
     );
