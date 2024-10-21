@@ -32,6 +32,7 @@ const Header = () => {
       <div className={`header-right ${isMenuOpen ? 'open' : ''}`}>
         <nav>
           <ul>
+            {/* headers for redirection */}
             <li><a href="#" onClick={() => scrollToSection('about')}>About Me</a></li>
             <li><a href="#" onClick={() => scrollToSection('experience')}>Experience</a></li>
             <li><a href="#" onClick={() => scrollToSection('projects')}>Projects</a></li>
