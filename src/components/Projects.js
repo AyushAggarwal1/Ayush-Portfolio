@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FaProjectDiagram } from 'react-icons/fa';
+
 import '../customCss/Projects.css'; // Adjust the path as needed
 
 const projectsData = [
@@ -48,7 +50,7 @@ const projectsData = [
 const Projects = () => {
   return (
     <section id="projects" className="projects-section">
-      <h2 className='project-heading'>My Projects</h2>
+      <h2 className='project-heading'><FaProjectDiagram /> My Projects</h2>
       <div className="projects-container">
         {projectsData.map((project, index) => (
           <div key={index} className="project-card">

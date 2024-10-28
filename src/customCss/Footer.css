@@ -12,5 +12,9 @@
   
   .footer p {
     margin: 0; /* Remove default margin */
+    background: linear-gradient(90deg, red, orange, indigo, violet); /* Rainbow gradient */
+    font-weight: bold; /* Make the text bold */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make the text fill color transparent */
   }
   

@@ -8,6 +8,11 @@
     transition: transform 0.3s, box-shadow 0.3s;
     animation: fadeInUp 1.5s ease-out;
   }
+
+  .underline {
+    text-decoration: underline;
+  }
+  
   .contact-message {
     font-size: 1.2rem; /* Slightly larger text */
     font-weight: 500; /* Medium weight for better emphasis */
