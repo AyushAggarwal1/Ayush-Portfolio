@@ -2,13 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { FaCommentDots } from 'react-icons/fa';
+
 
 import '../customCss/ContactUs.css'; // Optional: Import your custom CSS file for styling
 
 const Contact = () => {
   return (
     <section id="contact" className="contact-section">
-      <h2>Contact Me</h2>
+      <h2 className = 'underline'><FaCommentDots /> Contact Me</h2>
       
       <div class="contact-message">
       My inbox is always open! Feel free to reach out with questions, opportunities, or just to say hello. You can also connect with me on social media below.

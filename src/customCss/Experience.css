@@ -10,6 +10,9 @@
   align-items: center; /* Center items horizontally */
 
 }
+.underline {
+  text-decoration: underline;
+}
 
 #experience::before {
   content: '';

@@ -8,7 +8,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 const Experience = () => {
   return (
     <section id="experience">
-      <h2>
+      <h2 className='underline'> 
         <FaBriefcase /> Experience
       </h2>
       <div className="experience-container">

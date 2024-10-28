@@ -9,6 +9,10 @@
     animation: fadeIn 1s ease-in-out; /* Fade-in effect for the intro line */
   }
   
+  .underline {
+    text-decoration: underline;
+  }
+
   /* Hover effect for the intro line */
   .intro-line:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
