@@ -7,6 +7,16 @@ import '../customCss/Projects.css'; // Adjust the path as needed
 
 const projectsData = [
   {
+    title: "Ed-Chat-bot",   // project title
+    description: "This FastAPI-based chatbot, hosted on Azure and powered by OpenAI's GPT-3.5-turbo, assists with lead management, offers multilingual support (English, Spanish, and Russian)",    // project description
+    tech: "Python, Chat-GPT API, Fast API, Azure Cloud, Flask",    // skill used
+    githubLink: "https://github.com/AyushAggarwal1/ed-chatbot",    // github link
+    reportLink: "https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/",     // report link
+    reportLabel: "Hosted on Azure",  // Label for the report link
+    presentationLink: "",       // presentation link
+  },
+
+  {
     title: "Resume Selector",   // project title
     description: "Resume-Selector is a machine learning project designed to analyze and classify resumes based on industry sectors. Using a dataset from Kaggle, this project employs various preprocessing techniques and machine learning algorithms to streamline the hiring process.",    // project description
     tech: "Python, Numpy, Pandas, NLTK for natural language processing, Scikit-learn",    // skill used
