@@ -366,7 +366,7 @@ export default function Home() {
                 </h3>
                 
                 <p className="font-body text-[hsl(var(--color-text-body))] mb-6 leading-relaxed">
-                  Interested in learning more about my work and insights? Don&apos;t forget to explore my <a href="#" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--color-accent-primary))] hover:underline font-semibold transition-all duration-200 hover:opacity-90">Medium</a> and <a href="#" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--color-accent-primary))] hover:underline font-semibold transition-all duration-200 hover:opacity-90">Notion</a>.
+                  Interested in learning more about my work and insights? Don&apos;t forget to explore my <a href="https://medium.com/@ayushaggarwal1136" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--color-accent-primary))] hover:underline font-semibold transition-all duration-200 hover:opacity-90">Medium</a> and <a href="https://knowing-spoonbill-268.notion.site/Welcome-to-Ayush-s-Notion-World-833e75a9a45b43d0b73971bf5402ff9d" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--color-accent-primary))] hover:underline font-semibold transition-all duration-200 hover:opacity-90">Notion</a>.
                 </p>
                 
                 <p className="font-body text-[hsl(var(--color-text-body))] mb-8 leading-relaxed">
@@ -392,7 +392,7 @@ export default function Home() {
                   
                   <div className="flex justify-center gap-4">
                     {/* Medium Icon */}
-                    <a href="#" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Medium">
+                    <a href="https://www.linkedin.com/in/ayushaggarwalin/" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Medium">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 0 1-2 2Zm14-7V7a2 2 0 0 0-2-2H10a2 2 0 0 1-2-2V3a2 2 0 0 0-2 2v11" />
                         <path d="M7 3H5a2 2 0 0 0-2 2" />
@@ -401,7 +401,7 @@ export default function Home() {
                     </a>
                     
                     {/* Notion Icon */}
-                    <a href="#" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Notion">
+                    <a href="https://github.com/AyushAggarwal1" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Notion">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M2 7a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5Z" />
                         <path d="M5 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
@@ -411,7 +411,7 @@ export default function Home() {
                     </a>
                     
                     {/* Docker Hub Icon */}
-                    <a href="#" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Docker Hub">
+                    <a href="https://medium.com/@ayushaggarwal1136" className="w-10 h-10 rounded-full bg-[hsla(var(--color-bg-alt),0.3)] flex items-center justify-center text-[hsl(var(--color-text-muted))] hover:bg-[hsl(var(--color-accent-primary))] hover:text-white hover:scale-110 transition-all duration-300" target="_blank" rel="noopener noreferrer" aria-label="Docker Hub">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M8 2v8" />
                         <path d="M4 2v8" />
