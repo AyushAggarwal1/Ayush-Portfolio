@@ -4,11 +4,22 @@ import ScrollAnimationWrapper from './ScrollAnimationWrapper'; // Import the wra
 
 const ayushProjectsData: Project[] = [
   {
+    id: 'gst-bill-maker',
+    title: "GST Bill Maker",
+    description: "A comprehensive GST billing application with features like secure authentication, customer and item management, automatic tax calculations, bill generation (print/download), date filtering, and business profile management.",
+    technologies: ["Next.js 14", "React 18", "TailwindCSS", "Next.js API Routes", "PostgreSQL", "Prisma ORM", "NextAuth.js", "TypeScript"],
+    imageUrl: '/project_images/gst_bill.png',
+    links: [
+      { url: "https://github.com/AyushAggarwal1/gst-bill", label: "GitHub", icon: Github }, // Replace # with actual GitHub link
+      { url: "https://gstbillmaker.netlify.app/", label: "Live Demo", icon: ExternalLink, isPrimary: true } // Replace # with actual live demo link
+    ]
+  },
+  {
     id: 'ed-chatbot',
     title: "Ed-Chat-bot",
     description: "This FastAPI-based chatbot, hosted on Azure and powered by OpenAI's GPT-3.5-turbo, assists with lead management, offers multilingual support (English, Spanish, and Russian).",
     technologies: ["Python", "Chat-GPT API", "Fast API", "Azure Cloud", "Flask"],
-    imageUrl: 'https://via.placeholder.com/400x300/B2EBF2/006064?text=AI+Chatbot+System',
+    imageUrl: '/project_images/ed_chatbot.png',
     links: [
       { url: "https://github.com/AyushAggarwal1/ed-chatbot", label: "GitHub", icon: Github },
       { url: "https://ed-chatbot-ekbfcvcae3epdrgr.canadacentral-01.azurewebsites.net/", label: "Hosted on Azure", icon: ExternalLink, isPrimary: true },
@@ -19,7 +30,7 @@ const ayushProjectsData: Project[] = [
     title: "Resume Selector",
     description: "Resume-Selector is a machine learning project designed to analyze and classify resumes based on industry sectors. Using a dataset from Kaggle, this project employs various preprocessing techniques and machine learning algorithms to streamline the hiring process.",
     technologies: ["Python", "Numpy", "Pandas", "NLTK", "Scikit-learn", "Machine Learning"],
-    imageUrl: 'https://via.placeholder.com/400x300/C5CAE9/1A237E?text=ML+Resume+Analyzer',
+    imageUrl: '/project_images/resume_selector.png',
     links: [
       { url: "https://github.com/AyushAggarwal1/Resume-Selector", label: "GitHub", icon: Github },
       { url: "https://drive.google.com/file/d/169JzoSc4Id69lrsHUVpS9xb9gdKA9QpK/view", label: "View Research Paper", icon: FileText, isPrimary: true },
@@ -43,7 +54,7 @@ const ayushProjectsData: Project[] = [
     title: "Surveillance-Car",
     description: "The Surveillance Robotic Car project utilizes advanced wireless technologies (Wi-Fi, Bluetooth, and Zigbee) to develop robotic vehicles tailored for surveillance applications.",
     technologies: ["C++", "Adafruit Cloud", "Wi-Fi", "Bluetooth", "Zigbee", "Robotics"],
-    imageUrl: 'https://via.placeholder.com/400x300/DCEDC8/2E7D32?text=Robotic+Surveillance+Vehicle',
+    imageUrl: '/project_images/survillance_car.png',
     links: [
       { url: "https://github.com/AyushAggarwal1/Surveillance-Car", label: "GitHub", icon: Github },
       { url: "https://drive.google.com/file/d/1sCFyiNgm3yF2JxD9ODRPL9pdfuXyIoZp/view?usp=drive_link", label: "Video Demo", icon: Video },
@@ -60,17 +71,6 @@ const ayushProjectsData: Project[] = [
     links: [
       { url: "https://github.com/AyushAggarwal1/Coding-Ninjas-Music-Player", label: "GitHub", icon: Github },
       { url: "https://ayushmusicplayer.netlify.app/", label: "Hosted on Netlify", icon: ExternalLink, isPrimary: true },
-    ]
-  },
-  {
-    id: 'gst-bill-maker',
-    title: "GST Bill Maker",
-    description: "A comprehensive GST billing application with features like secure authentication, customer and item management, automatic tax calculations, bill generation (print/download), date filtering, and business profile management.",
-    technologies: ["Next.js 14", "React 18", "TailwindCSS", "Next.js API Routes", "PostgreSQL", "Prisma ORM", "NextAuth.js", "TypeScript"],
-    imageUrl: '/project_images/gst_bill.png',
-    links: [
-      { url: "https://github.com/AyushAggarwal1/gst-bill", label: "GitHub", icon: Github }, // Replace # with actual GitHub link
-      { url: "https://gstbillmaker.netlify.app/", label: "Live Demo", icon: ExternalLink, isPrimary: true } // Replace # with actual live demo link
     ]
   }
 ];
