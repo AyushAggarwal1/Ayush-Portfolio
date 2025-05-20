@@ -108,7 +108,7 @@ export default function Contact() {
               Send Me a Message
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" data-netlify="true">
               <div className="relative">
                 <motion.div 
                   className={`absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg blur-sm transition-opacity duration-300 ${
