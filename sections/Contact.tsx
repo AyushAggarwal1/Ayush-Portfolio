@@ -72,9 +72,9 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-20 overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gray-50 dark:bg-gray-900/50 -z-10" />
-      <div className="absolute top-20 left-20 w-72 h-72 bg-blue-100/30 dark:bg-blue-900/10 rounded-full blur-3xl -z-5" />
-      <div className="absolute bottom-10 right-20 w-80 h-80 bg-blue-200/20 dark:bg-blue-800/10 rounded-full blur-3xl -z-5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-dots bg-gray-50 dark:bg-gray-900/50 -z-10" />
+      <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-blue-100/40 via-purple-100/40 to-pink-100/40 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl -z-5" />
+      <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-tl from-purple-100/30 via-blue-100/30 to-cyan-100/30 dark:from-purple-900/20 dark:via-blue-900/20 dark:to-cyan-900/20 rounded-full blur-3xl -z-5" />
       
       <div className="container relative z-10 mx-auto px-4 md:px-6 max-w-7xl">
         <motion.div
@@ -84,10 +84,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 rounded-full">
             Let's Talk
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-4">
             Get In Touch
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -357,7 +357,7 @@ export default function Contact() {
                   whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
                   <Mail className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
-                  <span className="font-medium">ayush.aggarwal1136@gmail.com</span>
+                  <span className="font-medium">ayushaggarwal1136@gmail.com</span>
                 </motion.a>
               </div>
             </div>

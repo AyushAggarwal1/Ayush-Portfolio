@@ -32,9 +32,9 @@ export default function Experience() {
   return (
     <section id="experience" className="relative py-20 overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute inset-0 -z-10 bg-gray-50 dark:bg-gray-900/50" />
-      <div className="absolute -left-20 top-40 w-72 h-72 bg-blue-100/30 dark:bg-blue-800/10 rounded-full blur-3xl" />
-      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-blue-100/30 dark:bg-blue-800/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 -z-10 bg-grid bg-gray-50 dark:bg-gray-900/50" />
+      <div className="absolute -left-20 top-40 w-72 h-72 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-800/10 dark:to-purple-800/10 rounded-full blur-3xl" />
+      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-gradient-to-br from-blue-100/50 to-pink-100/50 dark:from-blue-800/10 dark:to-pink-800/10 rounded-full blur-3xl" />
       
       <div className="container relative mx-auto px-4 md:px-6">
         <motion.div
@@ -44,10 +44,10 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-secondary-600 dark:text-secondary-400 bg-secondary-50 dark:bg-secondary-900/30 rounded-full">
             Career Journey
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
             Professional Experience
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -146,9 +146,10 @@ export default function Experience() {
                     </div>
                   </div>
                   
-                  <AnimatePresence>
+                  <AnimatePresence mode="sync">
                     {expandedId === index && (
                       <motion.div
+                        key={`exp-details-${index}`}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
