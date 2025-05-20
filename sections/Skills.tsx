@@ -1,86 +1,120 @@
 'use client';
 
-import { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { skills } from '@/lib/data';
-import { ShieldCheck, Zap, Brain, Code, PenTool, Database, BarChart, Users } from 'lucide-react';
+import { skills as allSkillsData } from '@/lib/data'; // Renamed to avoid conflict
+import { SkillType } from '@/types'; // Import SkillType
+import { ShieldCheck, Users, Code, BarChart, Zap, PenTool, Brain, Star, Info } from 'lucide-react'; // Added Star, Info
 
-// Group skills by category
-const skillGroups = [
-  {
-    name: "Product Strategy",
-    icon: <ShieldCheck className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["Product Strategy", "Product Roadmapping", "Market Analysis", "Competitor Analysis", "Product Lifecycle Management"].includes(skill)
-    )
-  },
-  {
-    name: "User Experience",
-    icon: <Users className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["User Research", "UX/UI Design", "Customer Journey Mapping", "User Stories", "A/B Testing"].includes(skill)
-    )
-  },
-  {
-    name: "Technical",
-    icon: <Code className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["Next.js", "React", "TypeScript", "Python", "SQL", "Git"].includes(skill)
-    )
-  },
-  {
-    name: "Data & Analytics",
-    icon: <BarChart className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["Data Analysis", "Product Analytics", "A/B Testing"].includes(skill)
-    )
-  },
-  {
-    name: "Methodology",
-    icon: <Zap className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["Agile Methodologies", "Cross-functional Leadership", "Requirements Gathering", "Feature Prioritization"].includes(skill)
-    )
-  },
-  {
-    name: "Tools",
-    icon: <PenTool className="w-5 h-5" />,
-    skills: skills.filter(skill => 
-      ["JIRA", "Figma"].includes(skill)
-    )
-  },
-];
+// Helper to get category icon
+const getCategoryIcon = (categoryName: string): React.ReactElement => {
+  switch (categoryName) {
+    case 'Product Strategy': return <ShieldCheck className="w-6 h-6" />;
+    case 'User Experience': return <Users className="w-6 h-6" />;
+    case 'Technical': return <Code className="w-6 h-6" />;
+    case 'Data & Analytics': return <BarChart className="w-6 h-6" />;
+    case 'Methodology': return <Zap className="w-6 h-6" />;
+    case 'Tools': return <PenTool className="w-6 h-6" />;
+    default: return <Brain className="w-6 h-6" />;
+  }
+};
+
+// Group skills by category from the new data structure
+const skillGroups = allSkillsData.reduce((acc, skill) => {
+  const category = skill.category;
+  if (!acc[category]) {
+    acc[category] = {
+      name: category,
+      icon: getCategoryIcon(category),
+      skills: [],
+    };
+  }
+  acc[category].skills.push(skill);
+  return acc;
+}, {} as Record<string, { name: string; icon: React.ReactElement; skills: SkillType[] }>);
+
+const categoryOrder = ['Product Strategy', 'User Experience', 'Technical', 'Data & Analytics', 'Methodology', 'Tools'];
+const orderedSkillGroups = categoryOrder.map(categoryName => skillGroups[categoryName]).filter(group => group);
+
+interface SkillBubbleProps {
+  skill: SkillType;
+  index: number;
+  totalSkillsInCategory: number;
+}
+
+const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCategory }) => {
+  const angle = (index / totalSkillsInCategory) * 2 * Math.PI; // Distribute skills in a circle
+  const radius = totalSkillsInCategory > 4 ? 80 : 60; // Adjust radius based on number of skills
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
+  const delay = index * 0.1;
+
+  return (
+    <motion.div
+      className="absolute group/tooltip"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        x: x + 'px', // Adding 'px' unit
+        y: y + 'px', // Adding 'px' unit
+      }}
+      transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.5 + delay }}
+      whileHover={{ scale: 1.15, zIndex: 10 }}
+    >
+      <span
+        className="px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-800 dark:text-gray-200 text-sm font-medium cursor-default shadow-sm hover:shadow-md transition-shadow"
+      >
+        {skill.name}
+      </span>
+      {/* Tooltip */} 
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs p-2.5 bg-gray-800 dark:bg-gray-900 text-white text-xs rounded-md shadow-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-20">
+        {skill.proficiency && (
+          <div className="flex items-center mb-1">
+            <Star className="w-3 h-3 mr-1.5 text-yellow-400" /> 
+            <span className="font-semibold">{skill.proficiency}</span>
+          </div>
+        )}
+        {skill.description && (
+          <div className="flex items-start">
+            <Info className="w-3 h-3 mr-1.5 mt-0.5 text-blue-400 flex-shrink-0" />
+            <span>{skill.description}</span>
+          </div>
+        )}
+        {!skill.proficiency && !skill.description && (
+          <span>More details coming soon.</span>
+        )}
+        <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gray-800 dark:bg-gray-900"></div>
+      </div>
+    </motion.div>
+  );
+};
 
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const container = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.2, // Increased stagger for categories
       }
     }
   };
 
-  const item = {
-    hidden: { opacity: 0, scale: 0.8 },
+  const categoryItemVariants = {
+    hidden: { opacity: 0, y: 20 },
     show: { 
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10
-      }
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 80 }
     }
   };
 
   return (
-    <section id="skills" className="relative py-20 overflow-hidden">
+    <section id="skills" className="relative py-24 md:py-32 overflow-hidden bg-gray-50 dark:bg-gray-900/60">
       {/* Decorative background elements */}
       <div className="absolute inset-0 -z-10 bg-gray-50 dark:bg-gray-900/50" />
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500/20 to-transparent" />
@@ -100,95 +134,76 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
+          className="mb-16 md:mb-20 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-full">
-            Expertise
+          <span className="inline-block px-3.5 py-1.5 mb-5 text-sm font-semibold text-teal-600 dark:text-teal-400 bg-teal-100 dark:bg-teal-900/40 rounded-full tracking-wide">
+            My Expertise
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-5">
             Skills & Capabilities
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A comprehensive set of skills I've developed throughout my career as a product manager.
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            A dynamic showcase of the primary skills and technologies I leverage to build impactful products and solutions.
           </p>
         </motion.div>
 
-        <div ref={ref} className="max-w-6xl mx-auto">
+        <div ref={ref} className="max-w-7xl mx-auto">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={container}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" // Increased gap
+            variants={containerVariants}
             initial="hidden"
             animate={isInView ? "show" : "hidden"}
           >
-            {skillGroups.map((group, groupIndex) => (
+            {orderedSkillGroups.map((group) => (
               <motion.div
                 key={group.name}
-                variants={item}
-                className="relative bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                variants={categoryItemVariants}
+                className="relative bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 md:p-8 min-h-[280px] flex flex-col items-center justify-center text-center overflow-visible" // Added overflow-visible for tooltips
               >
-                {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-bl-3xl" />
-                
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
-                      {group.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                      {group.name}
-                    </h3>
+                {/* Category Header */}
+                <div className="mb-8">
+                  <div className="inline-flex items-center justify-center p-3 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 mb-3 shadow-sm">
+                    {group.icon}
                   </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill, index) => (
-                      <motion.span
-                        key={skill}
-                        className="px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-800 dark:text-gray-200 text-sm font-medium"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ 
-                          delay: 0.6 + (groupIndex * 0.1) + (index * 0.05),
-                          type: "spring",
-                          stiffness: 100
-                        }}
-                        whileHover={{ 
-                          backgroundColor: "#e0f2fe", 
-                          color: "#0284c7",
-                          scale: 1.05,
-                        }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                    {group.name}
+                  </h3>
                 </div>
+
+                {/* Skill Bubbles Orbiting Container */}
+                <div className="relative w-full h-40 flex items-center justify-center"> {/* Increased height for orbit */}
+                  {group.skills.map((skill, index) => (
+                    <SkillBubble 
+                      key={skill.name} 
+                      skill={skill} 
+                      index={index} 
+                      totalSkillsInCategory={group.skills.length} 
+                    />
+                  ))}
+                </div>
+                
               </motion.div>
             ))}
           </motion.div>
           
           <motion.div 
-            className="mt-16 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
+            className="mt-20 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.5 }} // Delay based on category animations
           >
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
-              Always learning and expanding my skillset to solve complex product challenges.
+            <p className="text-gray-600 dark:text-gray-400 text-lg mb-6 max-w-2xl mx-auto">
+              Continuously learning and adapting to new technologies and methodologies to drive innovation and excellence.
             </p>
-            
-            <motion.div 
-              className="mt-8 inline-block relative"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.a 
+              href="#contact" 
+              className="inline-flex items-center gap-2.5 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              whileTap={{ scale: 0.98 }}
             >
-              <a 
-                href="#contact" 
-                className="px-8 py-3 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg font-medium flex items-center gap-2 hover:bg-primary-100 dark:hover:bg-primary-800/30 transition-colors"
-              >
-                <Brain className="w-5 h-5" />
-                <span>Let's collaborate</span>
-              </a>
-            </motion.div>
+              <Brain className="w-5 h-5" />
+              <span>Let's Build Something Great</span>
+            </motion.a>
           </motion.div>
         </div>
       </div>

@@ -26,4 +26,12 @@ export interface ProjectType {
   technologies: string[];
   imageUrl: string;
   links: LinkType[];
+}
+
+export interface SkillType {
+  name: string;
+  proficiency?: string; // e.g., 'Advanced', 'Intermediate', 'Familiar'
+  description?: string; // Short description or specific tools/contexts
+  category: string; // To group skills, e.g., 'Product Strategy', 'Technical', 'Tools'
+  icon?: FC<SVGProps<SVGSVGElement>>; // Optional: if a skill has a specific icon
 } 

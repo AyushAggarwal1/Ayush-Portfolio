@@ -144,7 +144,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">
+          <span className="inline-block px-3.5 py-1.5 mb-5 text-sm font-semibold text-teal-600 dark:text-teal-400 bg-teal-100 dark:bg-teal-900/40 rounded-full tracking-wide">
             My Work
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -188,7 +188,7 @@ export default function Projects() {
             <div className="relative" ref={filterRef}>
               <motion.button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 dark:bg-gray-800 text-teal-600 dark:text-teal-400 border border-teal-500 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-700 dark:hover:text-teal-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -346,8 +346,16 @@ export default function Projects() {
                 layout
                 key={project.id}
                 variants={item}
-                className="group flex flex-col h-full bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-                whileHover={{ y: -5 }}
+                className="group flex flex-col h-full bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform-gpu"
+                style={{ perspective: '1000px' }}
+                whileHover={{
+                  y: -8,
+                  rotateX: 5,
+                  rotateY: -3,
+                  scale: 1.03,
+                  boxShadow: "0px 15px 30px -5px rgba(0, 0, 0, 0.1), 0px 8px 15px -8px rgba(0, 0, 0, 0.1)",
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
               >
                 {/* Project Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -444,12 +452,12 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className={`flex items-center gap-1.5 text-sm transition-all duration-300 ${
                           link.isPrimary
-                            ? 'relative overflow-hidden bg-blue-600 text-white px-3 py-1.5 rounded-md group/btn flex-1 justify-center'
+                            ? 'relative overflow-hidden bg-blue-600 text-white px-3 py-1.5 rounded-md group/btn justify-center'
                             : 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
                         }`}
                       >
                         {link.isPrimary && (
-                          <span className="absolute inset-0 w-full h-full bg-blue-700 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out" />
+                          <span className="absolute inset-0 w-20 h-full bg-blue-700 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out" />
                         )}
                         <link.icon className={`w-4 h-4 ${link.isPrimary ? 'relative z-10' : ''}`} />
                         <span className={`${link.isPrimary ? 'relative z-10' : ''} ${!link.isPrimary ? 'hidden sm:inline' : ''}`}>

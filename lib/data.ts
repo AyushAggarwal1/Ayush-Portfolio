@@ -1,4 +1,4 @@
-import { ExperienceType, ProjectType } from "@/types";
+import { ExperienceType, ProjectType, SkillType } from "@/types";
 import { 
   Github, 
   ExternalLink, 
@@ -132,29 +132,40 @@ export const projects: ProjectType[] = [
   }
 ];
 
-export const skills = [
-  "Product Strategy",
-  "User Research",
-  "Product Roadmapping",
-  "Market Analysis",
-  "Agile Methodologies",
-  "Data Analysis",
-  "UX/UI Design",
-  "Cross-functional Leadership",
-  "Requirements Gathering",
-  "Feature Prioritization",
-  "Product Lifecycle Management",
-  "A/B Testing",
-  "Competitor Analysis",
-  "Customer Journey Mapping",
-  "User Stories",
-  "JIRA",
-  "Figma",
-  "Product Analytics",
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Python",
-  "SQL",
-  "Git"
+export const skills: SkillType[] = [
+  // Product Strategy
+  { name: "Product Strategy", category: "Product Strategy", proficiency: "Advanced" },
+  { name: "Product Roadmapping", category: "Product Strategy", proficiency: "Advanced" },
+  { name: "Market Analysis", category: "Product Strategy", proficiency: "Proficient" },
+  { name: "Competitor Analysis", category: "Product Strategy", proficiency: "Proficient" },
+  { name: "Product Lifecycle Management", category: "Product Strategy", proficiency: "Proficient" },
+
+  // User Experience
+  { name: "User Research", category: "User Experience", proficiency: "Advanced" },
+  { name: "UX/UI Design", category: "User Experience", proficiency: "Proficient" },
+  { name: "Customer Journey Mapping", category: "User Experience", proficiency: "Proficient" },
+  { name: "User Stories", category: "User Experience", proficiency: "Advanced" },
+  { name: "A/B Testing", category: "User Experience", proficiency: "Intermediate" },
+
+  // Technical
+  { name: "Next.js", category: "Technical", proficiency: "Proficient" },
+  { name: "React", category: "Technical", proficiency: "Proficient" },
+  { name: "TypeScript", category: "Technical", proficiency: "Proficient" },
+  { name: "Python", category: "Technical", proficiency: "Intermediate" },
+  { name: "SQL", category: "Technical", proficiency: "Intermediate" },
+  { name: "Git", category: "Technical", proficiency: "Advanced" },
+
+  // Data & Analytics
+  { name: "Data Analysis", category: "Data & Analytics", proficiency: "Proficient" },
+  { name: "Product Analytics", category: "Data & Analytics", proficiency: "Proficient" },
+
+  // Methodology
+  { name: "Agile Methodologies", category: "Methodology", proficiency: "Advanced" },
+  { name: "Cross-functional Leadership", category: "Methodology", proficiency: "Advanced" },
+  { name: "Requirements Gathering", category: "Methodology", proficiency: "Advanced" },
+  { name: "Feature Prioritization", category: "Methodology", proficiency: "Advanced" },
+
+  // Tools
+  { name: "JIRA", category: "Tools", proficiency: "Advanced" },
+  { name: "Figma", category: "Tools", proficiency: "Proficient" },
 ]; 
