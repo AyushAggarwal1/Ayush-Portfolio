@@ -336,7 +336,7 @@ export default function Contact() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Connect with me</h3>
               <div className="space-y-3">
                 <motion.a 
-                  href="https://github.com/ayushaggarwal0101" target="_blank" rel="noopener noreferrer" 
+                  href="https://github.com/ayushaggarwal1" target="_blank" rel="noopener noreferrer" 
                   className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
                   whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
@@ -352,12 +352,12 @@ export default function Contact() {
                   <span className="font-medium">LinkedIn</span>
                 </motion.a>
                 <motion.a 
-                  href="mailto:ayush.aggarwal0101@gmail.com" 
+                  href="mailto:ayushaggarwal1136@gmail.com" 
                   className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
                   whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
                   <Mail className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
-                  <span className="font-medium">ayush.aggarwal0101@gmail.com</span>
+                  <span className="font-medium">ayush.aggarwal1136@gmail.com</span>
                 </motion.a>
               </div>
             </div>
