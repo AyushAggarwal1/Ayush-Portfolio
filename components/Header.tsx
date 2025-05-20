@@ -114,29 +114,32 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}
-          className="md:hidden bg-white dark:bg-dark shadow-lg"
-        >
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-700 dark:text-gray-300 py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      {/* Mobile Menu with AnimatePresence */}
+      <AnimatePresence mode="sync">
+        {mobileMenuOpen && (
+          <motion.div 
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-white dark:bg-dark shadow-lg"
+          >
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-gray-700 dark:text-gray-300 py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 } 

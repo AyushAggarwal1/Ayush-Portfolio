@@ -6,8 +6,6 @@ type SectionDividerProps = {
   type?: 'wave' | 'angle' | 'curve' | 'triangles';
   flip?: boolean;
   className?: string;
-  lightColor?: string;
-  darkColor?: string;
   colorScheme?: 'primary' | 'secondary' | 'accent' | 'gradient';
 };
 
@@ -15,8 +13,6 @@ export default function SectionDivider({
   type = 'wave', 
   flip = false, 
   className = '',
-  lightColor = '#f9fafb', // Default light color (gray-50)
-  darkColor = '#111827',   // Default dark color (gray-900)
   colorScheme = 'primary'
 }: SectionDividerProps) {
   

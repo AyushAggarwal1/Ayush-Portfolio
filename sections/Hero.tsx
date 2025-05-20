@@ -11,8 +11,8 @@ import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
-// Fix for motion() deprecation warning
-const MotionLink = motion(Link);
+// Fix for motion() deprecation warning - use motion.create() instead
+const MotionLink = motion.create(Link);
 
 export default function Hero() {
   const [init, setInit] = useState(false);

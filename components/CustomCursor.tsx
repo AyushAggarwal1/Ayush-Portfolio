@@ -120,7 +120,7 @@ const CustomCursor = () => {
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [cursorControls, isPointer]);
+  }, [cursorControls, isPointer, springEasing]);
 
   // Update animation based on speed
   useEffect(() => {
@@ -160,7 +160,7 @@ const CustomCursor = () => {
     
     const animationFrame = requestAnimationFrame(updateCursorStyle);
     return () => cancelAnimationFrame(animationFrame);
-  }, [cursorControls, isClicking, isPointer]);
+  }, [cursorControls, isClicking, isPointer, springEasing]);
 
   if (shouldReduceMotion) {
     return null;
