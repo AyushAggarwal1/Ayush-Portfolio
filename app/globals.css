@@ -10,7 +10,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-:root {
+  :root {
   --foreground-rgb: 26, 26, 26;
   --background-rgb: 255, 255, 255;
   

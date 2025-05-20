@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, MapPin, ChevronDown, Briefcase, Calendar } from 'lucide-react';
 import Image from 'next/image';
@@ -8,6 +8,22 @@ import { experiences } from '@/lib/data';
 
 export default function Experience() {
   const [expandedId, setExpandedId] = useState<number | null>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Check initially
+    checkIfMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const toggleExpand = (index: number) => {
     setExpandedId(expandedId === index ? null : index);
@@ -64,7 +80,9 @@ export default function Experience() {
             viewport={{ once: true, margin: "-100px" }}
           >
             {/* Timeline line */}
-            <div className="absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2" />
+            <div className="absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2" 
+              style={{ top: isMobile ? '8px' : '0' }}
+            />
             
             {experiences.map((experience, index) => (
               <motion.div
@@ -72,19 +90,19 @@ export default function Experience() {
                 variants={item}
                 className={`relative mb-12 md:mb-16 ${
                   index % 2 === 0 ? 'md:pr-10 md:ml-auto md:mr-1/2' : 'md:pl-10 md:ml-1/2'
-                }`}
-                style={{ maxWidth: 'calc(50% - 20px)' }}
+                } w-full md:w-auto`}
+                style={{ maxWidth: isMobile ? '100%' : 'calc(50% - 20px)' }}
               >
                 {/* Timeline dot */}
                 <motion.div 
-                  className="absolute left-0 md:left-1/2 top-0 w-6 h-6 rounded-full bg-blue-500 border-4 border-white dark:border-gray-900 transform md:-translate-x-1/2 z-10"
+                  className="absolute left-0 md:left-1/2 top-2 md:top-0 w-6 h-6 rounded-full bg-blue-500 border-4 border-white dark:border-gray-900 transform md:-translate-x-1/2 z-10"
                   whileHover={{ scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   onClick={() => toggleExpand(index)}
                 />
                 
                 <motion.div
-                  className={`mt-0 ml-10 md:ml-0 p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer transition-shadow ${
+                  className={`mt-2 md:mt-0 ml-10 md:ml-0 p-4 md:p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer transition-shadow ${
                     expandedId === index ? 'ring-2 ring-blue-500 dark:ring-blue-400' : 'hover:shadow-lg'
                   }`}
                   onClick={() => toggleExpand(index)}
