@@ -133,8 +133,9 @@ export default function Projects() {
   return (
     <section id="projects" className="relative py-20 overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-0 -right-1/4 w-1/2 h-1/2 bg-blue-50/30 dark:bg-blue-900/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-blue-50/30 dark:bg-blue-900/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute inset-0 -z-10 bg-dots bg-white dark:bg-gray-900" />
+      <div className="absolute top-0 -right-1/4 w-1/2 h-1/2 bg-gradient-to-br from-blue-50/50 via-purple-50/50 to-pink-50/50 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10 rounded-full blur-3xl -z-5" />
+      <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-50/50 via-blue-50/50 to-cyan-50/50 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-cyan-900/10 rounded-full blur-3xl -z-5" />
       
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
@@ -144,21 +145,21 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <span className="inline-block px-3.5 py-1.5 mb-5 text-sm font-semibold text-teal-600 dark:text-teal-400 bg-teal-100 dark:bg-teal-900/40 rounded-full tracking-wide">
+          <span className="inline-block px-3.5 py-1.5 mb-5 text-sm font-semibold text-accent-600 dark:text-accent-400 bg-accent-100 dark:bg-accent-900/40 rounded-full tracking-wide">
             My Work
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold gradient-text-secondary mb-4">
             Featured Projects
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A showcase of my technical skills and creative problem-solving abilities.
           </p>
           {/* Debug information to help troubleshoot */}
-          <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          {/* <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
             <span>Total Projects: {projects.length} | </span>
             <span>Filtered: {filteredProjects.length} | </span>
             <span>Visible: {visibleCount}</span>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Filters */}
@@ -199,9 +200,10 @@ export default function Projects() {
                 </span>
               </motion.button>
               
-              <AnimatePresence>
+              <AnimatePresence mode="sync">
                 {isFilterOpen && (
                   <motion.div
+                    key="filter-dropdown"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
@@ -340,136 +342,141 @@ export default function Projects() {
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <AnimatePresence mode="wait">
-            {filteredProjects.slice(0, visibleCount).map((project, index) => (
-              <motion.div
-                layout
-                key={project.id}
-                variants={item}
-                className="group flex flex-col h-full bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform-gpu"
-                style={{ perspective: '1000px' }}
-                whileHover={{
-                  y: -8,
-                  rotateX: 5,
-                  rotateY: -3,
-                  scale: 1.03,
-                  boxShadow: "0px 15px 30px -5px rgba(0, 0, 0, 0.1), 0px 8px 15px -8px rgba(0, 0, 0, 0.1)",
-                  transition: { type: "spring", stiffness: 300, damping: 20 }
-                }}
-              >
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
-                  {imageError[project.id] ? (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
-                      <div className="text-center">
-                        <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-2" />
-                        <p className="text-sm text-gray-500">{project.title}</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <Image
-                        src={project.imageUrl}
-                        alt={project.title}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        className="transition-transform duration-500 group-hover:scale-110"
-                        onError={() => handleImageError(project.id)}
-                      />
-                      {/* Image overlay effect */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
-                      {/* Project title on image that appears on hover */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="text-xl font-bold text-white drop-shadow-lg">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </>
-                  )}
-                </div>
-                
-                {/* Project Content */}
-                <div className="flex flex-col flex-grow p-6">
-                  {/* Title - visible on mobile/desktop when not hovering */}
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors md:group-hover:opacity-0 md:group-hover:h-0 md:group-hover:mb-0 md:group-hover:overflow-hidden">
-                    {project.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  
-                  {/* Technologies */}
-                  <div className="mt-auto mb-4">
-                    <h4 className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 font-medium">Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <button
-                          key={tech}
-                          onClick={() => handleFilterChange(tech)}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            techIndex < 4
-                              ? 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                              : 'hidden'
-                          }`}
-                        >
-                          {tech}
-                        </button>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <div className="relative group/tooltip">
-                          <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-default">
-                            +{project.technologies.length - 4}
-                          </span>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 bg-white dark:bg-gray-800 rounded shadow-lg text-sm w-max max-w-[200px] opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-10">
-                            <div className="flex flex-wrap gap-1">
-                              {project.technologies.slice(4).map(tech => (
-                                <button
-                                  key={tech}
-                                  onClick={() => handleFilterChange(tech)}
-                                  className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
-                                >
-                                  {tech}
-                                </button>
-                              ))}
-                            </div>
-                            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white dark:bg-gray-800"></div>
-                          </div>
-                        </div>
-                      )}
+          {filteredProjects.slice(0, visibleCount).map((project, index) => (
+            <motion.div
+              layout
+              key={project.id}
+              variants={item}
+              className="group flex flex-col h-full bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform-gpu"
+              style={{ perspective: '1000px' }}
+              whileHover={{
+                y: -8,
+                rotateX: 5,
+                rotateY: -3,
+                scale: 1.03,
+                boxShadow: "0px 15px 30px -5px rgba(0, 0, 0, 0.1), 0px 8px 15px -8px rgba(0, 0, 0, 0.1)",
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ 
+                duration: 0.3,
+                delay: index * 0.1
+              }}
+            >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                {imageError[project.id] ? (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                    <div className="text-center">
+                      <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-2" />
+                      <p className="text-sm text-gray-500">{project.title}</p>
                     </div>
                   </div>
-                  
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap gap-3 mt-auto pt-2 border-t border-gray-100 dark:border-gray-700">
-                    {project.links.map(link => (
-                      <Link
-                        key={link.label}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center gap-1.5 text-sm transition-all duration-300 ${
-                          link.isPrimary
-                            ? 'relative overflow-hidden bg-blue-600 text-white px-3 py-1.5 rounded-md group/btn justify-center'
-                            : 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
+                ) : (
+                  <>
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      className="transition-transform duration-500 group-hover:scale-110"
+                      onError={() => handleImageError(project.id)}
+                    />
+                    {/* Image overlay effect */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Project title on image that appears on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-xl font-bold text-white drop-shadow-lg">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </>
+                )}
+              </div>
+              
+              {/* Project Content */}
+              <div className="flex flex-col flex-grow p-6">
+                {/* Title - visible on mobile/desktop when not hovering */}
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors md:group-hover:opacity-0 md:group-hover:h-0 md:group-hover:mb-0 md:group-hover:overflow-hidden">
+                  {project.title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+                
+                {/* Technologies */}
+                <div className="mt-auto mb-4">
+                  <h4 className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 font-medium">Technologies</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <button
+                        key={tech}
+                        onClick={() => handleFilterChange(tech)}
+                        className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                          techIndex < 4
+                            ? 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            : 'hidden'
                         }`}
                       >
-                        {link.isPrimary && (
-                          <span className="absolute inset-0 w-20 h-full bg-blue-700 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out" />
-                        )}
-                        <link.icon className={`w-4 h-4 ${link.isPrimary ? 'relative z-10' : ''}`} />
-                        <span className={`${link.isPrimary ? 'relative z-10' : ''} ${!link.isPrimary ? 'hidden sm:inline' : ''}`}>
-                          {link.label}
-                        </span>
-                      </Link>
+                        {tech}
+                      </button>
                     ))}
+                    {project.technologies.length > 4 && (
+                      <div className="relative group/tooltip">
+                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-default">
+                          +{project.technologies.length - 4}
+                        </span>
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 bg-white dark:bg-gray-800 rounded shadow-lg text-sm w-max max-w-[200px] opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-10">
+                          <div className="flex flex-wrap gap-1">
+                            {project.technologies.slice(4).map(tech => (
+                              <button
+                                key={tech}
+                                onClick={() => handleFilterChange(tech)}
+                                className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                              >
+                                {tech}
+                              </button>
+                            ))}
+                          </div>
+                          <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white dark:bg-gray-800"></div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3 mt-auto pt-2 border-t border-gray-100 dark:border-gray-700">
+                  {project.links.map(link => (
+                    <Link
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-1.5 text-sm transition-all duration-300 ${
+                        link.isPrimary
+                          ? 'relative overflow-hidden bg-blue-600 text-white px-3 py-1.5 rounded-md group/btn justify-center'
+                          : 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
+                      }`}
+                    >
+                      {link.isPrimary && (
+                        <span className="absolute inset-0 w-20 h-full bg-blue-700 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out" />
+                      )}
+                      <link.icon className={`w-4 h-4 ${link.isPrimary ? 'relative z-10' : ''}`} />
+                      <span className={`${link.isPrimary ? 'relative z-10' : ''} ${!link.isPrimary ? 'hidden sm:inline' : ''}`}>
+                        {link.label}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
         
         {/* Load More Button */}

@@ -11,6 +11,9 @@ import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
+// Fix for motion() deprecation warning - use motion.create() instead
+const MotionLink = motion.create(Link);
+
 export default function Hero() {
   const [init, setInit] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -25,15 +28,19 @@ export default function Hero() {
     mediaQuery.addEventListener('change', handleChange);
 
     console.log("Attempting to initialize particles engine...");
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-      console.log("Particles engine initialized.");
-    }).then(() => {
-      setInit(true);
-      console.log("Particles init set to true.");
-    }).catch(error => {
-      console.error("Error initializing particles engine:", error);
-    });
+    // Immediately invoke to avoid any potential race conditions
+    (async () => {
+      try {
+        await initParticlesEngine(async (engine) => {
+          await loadSlim(engine);
+          console.log("Particles engine initialized successfully.");
+        });
+        setInit(true);
+        console.log("Particles init set to true.");
+      } catch (error) {
+        console.error("Error initializing particles engine:", error);
+      }
+    })();
 
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
@@ -42,45 +49,41 @@ export default function Hero() {
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
     console.log("Particles loaded, container:", container);
+    // Make sure container is visible after loading
+    if (container?.canvas?.element) {
+      const canvas = container.canvas.element as HTMLCanvasElement;
+      canvas.style.position = 'absolute';
+      canvas.style.zIndex = '1';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.pointerEvents = 'none';
+    }
   };
 
   const options: ISourceOptions = useMemo(
     () => ({
-      // background: {
-      //   color: { value: "#transparent" }, // Ensure background is transparent
-      // },
-      fpsLimit: 60,
-      interactivity: {
-        events: {
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          onHover: {
-            enable: true,
-            mode: "repulse", // repulse on hover
-          },
-        },
-        modes: {
-          push: {
-            quantity: 3,
-          },
-          repulse: {
-            distance: 150, // Increased distance for repulse
-            duration: 0.6,
-          },
-        },
+      fullScreen: {
+        enable: false
       },
+      fpsLimit: 60,
       particles: {
         color: {
-          value: isDarkTheme ? "#A0AEC0" : "#4A5568", // Light gray for dark, darker gray for light
+          value: [
+            isDarkTheme ? "#3b82f6" : "#3b82f6", // blue
+            isDarkTheme ? "#8b5cf6" : "#8b5cf6", // purple
+            isDarkTheme ? "#ec4899" : "#ec4899", // pink
+          ],
         },
         links: {
-          color: isDarkTheme ? "#718096" : "#718096", // Slightly darker gray for links
-          distance: 160,
+          color: isDarkTheme ? "random" : "random",
+          distance: 150,
           enable: true,
-          opacity: 0.2, // Reduced opacity for subtlety
-          width: 1,
+          opacity: 0.5, // Increased from 0.3
+          width: 1.5, // Increased from 1
+          triangles: {
+            enable: true,
+            opacity: 0.1 // Doubled from 0.05
+          }
         },
         collisions: {
           enable: true,
@@ -91,25 +94,122 @@ export default function Hero() {
           outModes: {
             default: "bounce",
           },
-          random: true, // More random movement
-          speed: 0.5,    // Slower speed
+          random: true,
+          speed: 1.5, // Increased from 1
           straight: false,
+          trail: {
+            enable: true,
+            length: 4, // Increased from 3
+            fillColor: isDarkTheme ? "#111827" : "#ffffff",
+          },
+          attract: {
+            enable: true,
+            rotateX: 600,
+            rotateY: 1200,
+          },
         },
         number: {
           density: {
             enable: true,
-            area: 800, // Standard density area
+            area: 800,
           },
-          value: 60, // Slightly more particles
+          value: 100, // Increased from 70
         },
         opacity: {
-          value: isDarkTheme ? 0.4 : 0.5, // Slightly more visible
+          value: { min: 0.4, max: 0.8 }, // Increased from 0.3-0.7
+          animation: {
+            enable: true,
+            speed: 0.5,
+            minimumValue: 0.2, // Increased from 0.1
+            sync: false
+          }
         },
         shape: {
-          type: "circle",
+          type: ["circle", "triangle", "polygon"],
+          options: {
+            polygon: {
+              sides: 6
+            }
+          }
         },
         size: {
-          value: { min: 1, max: 4 }, // Slightly larger max size
+          value: { min: 1.5, max: 6 }, // Increased from 1-5
+          animation: {
+            enable: true,
+            speed: 2,
+            minimumValue: 0.5,
+            sync: false
+          }
+        },
+        twinkle: {
+          lines: {
+            enable: true,
+            frequency: 0.1, // Increased from 0.05
+            opacity: 0.7, // Increased from 0.5
+            color: {
+              value: isDarkTheme ? "#a855f7" : "#a855f7" // purple
+            }
+          },
+          particles: {
+            enable: true,
+            frequency: 0.1, // Increased from 0.05
+            opacity: 0.7, // Increased from 0.5
+            color: {
+              value: isDarkTheme ? "#ec4899" : "#ec4899" // pink
+            }
+          }
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+            parallax: { 
+              enable: true, 
+              force: 30, // Increased from 20
+              smooth: 15 // Increased from 10
+            }
+          },
+          resize: {
+            enable: true,
+            delay: 0.5,
+          },
+        },
+        modes: {
+          push: {
+            quantity: 7, // Increased from 5
+            groups: ["polygon"]
+          },
+          repulse: {
+            distance: 150,
+            duration: 0.4,
+          },
+          bubble: {
+            distance: 200,
+            size: 7,
+            duration: 2,
+            opacity: 1,
+            speed: 3
+          },
+          connect: {
+            distance: 80,
+            links: {
+              opacity: 0.3
+            },
+            radius: 60
+          },
+          grab: {
+            distance: 200,
+            links: {
+              opacity: 0.3
+            }
+          }
         },
       },
       detectRetina: true,
@@ -145,19 +245,25 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white dark:bg-gray-900">
-      {/* Animated background elements */}
-      <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-        className="absolute inset-0 -z-0" // Changed z-index to 0 to be behind content but visible
-      />
-      {/* <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-900/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-200/20 dark:bg-blue-800/20 rounded-full blur-3xl" />
-      </div> */}
+      {/* Particle background with fixed z-index to ensure visibility */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        {init && (
+          <Particles
+            id="tsparticles"
+            particlesLoaded={particlesLoaded}
+            options={options}
+            className="absolute inset-0"
+          />
+        )}
+      </div>
       
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-24">
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-900/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-200/20 dark:bg-purple-800/30 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 py-12 md:py-24 relative" style={{ zIndex: 10 }}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -168,9 +274,9 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block px-4 py-1 mb-6 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700"
+              className="inline-block px-4 py-1 mb-6 rounded-full bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 dark:from-blue-900/30 dark:via-purple-900/30 dark:to-pink-900/30 border border-blue-200 dark:border-blue-700"
             >
-              <span className="text-blue-600 dark:text-blue-400 font-medium">
+              <span className="text-gradient-text font-medium">
                 Product Manager
               </span>
             </motion.div>
@@ -220,21 +326,28 @@ export default function Hero() {
             >
               <Link
                 href="/#projects"
-                className="relative group overflow-hidden rounded-md bg-blue-600 px-6 py-3 text-white flex items-center gap-2"
+                className="btn-primary group"
               >
                 <Briefcase className="w-5 h-5 relative z-10" />
                 <span className="relative z-10 font-medium">View My Work</span>
-                <span className="absolute inset-0 bg-blue-700 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
               </Link>
-              <Link
-                href="/#contact"
-                className="group px-6 py-3 rounded-md border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 font-medium transition-colors"
+              <motion.button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="btn-outline group"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span className="flex items-center gap-2">
                   Contact Me
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 group-hover:scale-110">→</span>
                 </span>
-              </Link>
+              </motion.button>
             </motion.div>
           </motion.div>
           

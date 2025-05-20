@@ -72,9 +72,9 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-20 overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gray-50 dark:bg-gray-900/50 -z-10" />
-      <div className="absolute top-20 left-20 w-72 h-72 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl -z-5" />
-      <div className="absolute bottom-10 right-20 w-80 h-80 bg-primary-200/20 dark:bg-primary-800/10 rounded-full blur-3xl -z-5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-dots bg-gray-50 dark:bg-gray-900/50 -z-10" />
+      <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-blue-100/40 via-purple-100/40 to-pink-100/40 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl -z-5" />
+      <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-tl from-purple-100/30 via-blue-100/30 to-cyan-100/30 dark:from-purple-900/20 dark:via-blue-900/20 dark:to-cyan-900/20 rounded-full blur-3xl -z-5" />
       
       <div className="container relative z-10 mx-auto px-4 md:px-6 max-w-7xl">
         <motion.div
@@ -84,10 +84,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 rounded-full">
             Let's Talk
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-4">
             Get In Touch
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -111,11 +111,11 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="relative">
                 <motion.div 
-                  className={`absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-lg blur-sm opacity-0 transition-opacity duration-300 ${
-                    focusedInput === 'name' ? 'opacity-70' : 'opacity-0'
+                  className={`absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg blur-sm transition-opacity duration-300 ${
+                    focusedInput === 'name' ? 'opacity-60' : 'opacity-0'
                   }`}
                   animate={{ 
-                    opacity: focusedInput === 'name' ? 0.7 : 0,
+                    opacity: focusedInput === 'name' ? 0.6 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -136,18 +136,18 @@ export default function Contact() {
                     onFocus={() => handleFocus('name')}
                     onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   />
                 </div>
               </div>
               
               <div className="relative">
                 <motion.div 
-                  className={`absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-lg blur-sm opacity-0 transition-opacity duration-300 ${
-                    focusedInput === 'email' ? 'opacity-70' : 'opacity-0'
+                  className={`absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg blur-sm transition-opacity duration-300 ${
+                    focusedInput === 'email' ? 'opacity-60' : 'opacity-0'
                   }`}
                   animate={{ 
-                    opacity: focusedInput === 'email' ? 0.7 : 0,
+                    opacity: focusedInput === 'email' ? 0.6 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -168,18 +168,18 @@ export default function Contact() {
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   />
                 </div>
               </div>
               
               <div className="relative">
                 <motion.div 
-                  className={`absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-lg blur-sm opacity-0 transition-opacity duration-300 ${
-                    focusedInput === 'message' ? 'opacity-70' : 'opacity-0'
+                  className={`absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg blur-sm transition-opacity duration-300 ${
+                    focusedInput === 'message' ? 'opacity-60' : 'opacity-0'
                   }`}
                   animate={{ 
-                    opacity: focusedInput === 'message' ? 0.7 : 0,
+                    opacity: focusedInput === 'message' ? 0.6 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -200,7 +200,7 @@ export default function Contact() {
                     onBlur={handleBlur}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   />
                 </div>
               </div>
@@ -208,16 +208,21 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="relative w-full overflow-hidden group bg-primary-600 hover:bg-primary-700 text-white px-6 py-3.5 rounded-lg font-medium transition-colors disabled:opacity-70"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="relative w-full overflow-hidden group bg-blue-600 text-white px-6 py-3.5 rounded-lg font-medium transition-colors disabled:opacity-70"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 group-hover:translate-x-1 transition-transform">
+                <motion.span 
+                  className="absolute inset-0 w-full h-full bg-blue-700 transform -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"
+                  animate={{ x: isSubmitting ? "0%" : "-100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 group-hover:translate-x-1 transition-transform z-10">
                   {isSubmitting ? null : (
                     <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all" />
                   )}
                 </span>
-                <span className="inline-flex items-center justify-center gap-2 group-hover:translate-x-[-10px] transition-transform">
+                <span className="relative z-10 inline-flex items-center justify-center gap-2 group-hover:translate-x-[-10px] transition-transform">
                   {isSubmitting ? (
                     <>
                       <svg className="animate-spin -mt-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -328,40 +333,33 @@ export default function Contact() {
             </div>
             
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-                <span className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-3">
-                  <Clock className="w-4 h-4 text-primary-600 dark:text-primary-400" />
-                </span>
-                Connect with me
-              </h3>
-              
-              <div className="flex items-center gap-4 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Connect with me</h3>
+              <div className="space-y-3">
                 <motion.a 
-                  href="https://github.com/AyushAggarwal1" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-900/30 dark:hover:text-primary-400 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  href="https://github.com/ayushaggarwal1" target="_blank" rel="noopener noreferrer" 
+                  className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
+                  whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
+                  <span className="font-medium">GitHub</span>
                 </motion.a>
-                
                 <motion.a 
-                  href="https://linkedin.com/in/ayushaggarwalin" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-100 hover:text-primary-600 dark:hover:bg-primary-900/30 dark:hover:text-primary-400 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  href="https://www.linkedin.com/in/ayush-aggarwal-product-manager/" target="_blank" rel="noopener noreferrer" 
+                  className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
+                  whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
+                  <span className="font-medium">LinkedIn</span>
+                </motion.a>
+                <motion.a 
+                  href="mailto:ayushaggarwal1136@gmail.com" 
+                  className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
+                  whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                >
+                  <Mail className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
+                  <span className="font-medium">ayushaggarwal1136@gmail.com</span>
                 </motion.a>
               </div>
-              
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                I typically respond to inquiries within 24-48 hours during weekdays.
-              </p>
             </div>
           </motion.div>
         </div>

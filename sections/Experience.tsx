@@ -32,9 +32,9 @@ export default function Experience() {
   return (
     <section id="experience" className="relative py-20 overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute inset-0 -z-10 bg-gray-50 dark:bg-gray-900/50" />
-      <div className="absolute -left-20 top-40 w-72 h-72 bg-blue-100/30 dark:bg-blue-800/10 rounded-full blur-3xl" />
-      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-blue-100/30 dark:bg-blue-800/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 -z-10 bg-grid bg-gray-50 dark:bg-gray-900/50" />
+      <div className="absolute -left-20 top-40 w-72 h-72 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-800/10 dark:to-purple-800/10 rounded-full blur-3xl" />
+      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-gradient-to-br from-blue-100/50 to-pink-100/50 dark:from-blue-800/10 dark:to-pink-800/10 rounded-full blur-3xl" />
       
       <div className="container relative mx-auto px-4 md:px-6">
         <motion.div
@@ -44,10 +44,10 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-secondary-600 dark:text-secondary-400 bg-secondary-50 dark:bg-secondary-900/30 rounded-full">
             Career Journey
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
             Professional Experience
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -83,17 +83,22 @@ export default function Experience() {
                   onClick={() => toggleExpand(index)}
                 />
                 
-                <div 
-                  className={`mt-0 ml-10 md:ml-0 p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer hover:shadow-lg transition-shadow ${
-                    expandedId === index ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
+                <motion.div
+                  className={`mt-0 ml-10 md:ml-0 p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer transition-shadow ${
+                    expandedId === index ? 'ring-2 ring-blue-500 dark:ring-blue-400' : 'hover:shadow-lg'
                   }`}
                   onClick={() => toggleExpand(index)}
+                  whileHover={expandedId !== index ? { y: -4, scale: 1.02, boxShadow: "0px 10px 20px -5px rgba(0, 0, 0, 0.1)" } : {}}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
                   <div className="flex flex-col gap-3">
                     {/* Company Logo */}
                     {experience.logoUrl && (
                       <div className="flex justify-start mb-2">
-                        <div className="relative w-12 h-12 overflow-hidden rounded-md bg-white shadow-sm">
+                        <motion.div 
+                          className="relative w-12 h-12 overflow-hidden rounded-md bg-white shadow-sm"
+                          whileHover={{ scale: 1.08, transition: { type: "spring", stiffness: 300 } }}
+                        >
                           <Image 
                             src={experience.logoUrl} 
                             alt={`${experience.company} logo`} 
@@ -101,7 +106,7 @@ export default function Experience() {
                             style={{ objectFit: 'contain' }}
                             className="p-1"
                           />
-                        </div>
+                        </motion.div>
                       </div>
                     )}
                     
@@ -141,9 +146,10 @@ export default function Experience() {
                     </div>
                   </div>
                   
-                  <AnimatePresence>
+                  <AnimatePresence mode="sync">
                     {expandedId === index && (
                       <motion.div
+                        key={`exp-details-${index}`}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -197,10 +203,15 @@ export default function Experience() {
                       whileTap={{ scale: 0.97 }}
                     >
                       <span>Show details</span>
-                      <ChevronDown className="w-4 h-4" />
+                      <motion.span
+                        animate={{ rotate: expandedId === index ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </motion.span>
                     </motion.button>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
