@@ -60,7 +60,12 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCa
         y: y + 'px', // Adding 'px' unit
       }}
       transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.5 + delay }}
-      whileHover={{ scale: 1.15, zIndex: 10 }}
+      whileHover={{
+        scale: 1.2, // Increased scale
+        zIndex: 10,
+        rotate: [0, -5, 5, -5, 0], // Wobble effect
+        transition: { duration: 0.4, ease: "easeInOut" } // Specific transition for hover
+      }}
     >
       <span
         className="px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-800 dark:text-gray-200 text-sm font-medium cursor-default shadow-sm hover:shadow-md transition-shadow"
@@ -158,7 +163,13 @@ export default function Skills() {
               <motion.div
                 key={group.name}
                 variants={categoryItemVariants}
-                className="relative bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 md:p-8 min-h-[280px] flex flex-col items-center justify-center text-center overflow-visible" // Added overflow-visible for tooltips
+                className="relative bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 md:p-8 min-h-[280px] flex flex-col items-center justify-center text-center overflow-visible transform-gpu"
+                whileHover={{
+                  scale: 1.03,
+                  filter: "brightness(1.05)",
+                  boxShadow: "0px 20px 40px -10px rgba(0, 0, 0, 0.15), 0px 10px 20px -10px rgba(0, 0, 0, 0.1)",
+                  transition: { type: "spring", stiffness: 300, damping: 15 }
+                }}
               >
                 {/* Category Header */}
                 <div className="mb-8">
@@ -198,11 +209,12 @@ export default function Skills() {
             </p>
             <motion.a 
               href="#contact" 
-              className="inline-flex items-center gap-2.5 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="group relative overflow-hidden inline-flex items-center gap-2.5 px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               whileTap={{ scale: 0.98 }}
             >
-              <Brain className="w-5 h-5" />
-              <span>Let's Build Something Great</span>
+              <span className="absolute inset-0 w-full h-full bg-blue-700 transform translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></span>
+              <Brain className="w-5 h-5 relative z-10" />
+              <span className="relative z-10">Let's Build Something Great</span>
             </motion.a>
           </motion.div>
         </div>

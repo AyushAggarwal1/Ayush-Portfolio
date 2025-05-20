@@ -83,17 +83,22 @@ export default function Experience() {
                   onClick={() => toggleExpand(index)}
                 />
                 
-                <div 
-                  className={`mt-0 ml-10 md:ml-0 p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer hover:shadow-lg transition-shadow ${
-                    expandedId === index ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
+                <motion.div
+                  className={`mt-0 ml-10 md:ml-0 p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 cursor-pointer transition-shadow ${
+                    expandedId === index ? 'ring-2 ring-blue-500 dark:ring-blue-400' : 'hover:shadow-lg'
                   }`}
                   onClick={() => toggleExpand(index)}
+                  whileHover={expandedId !== index ? { y: -4, scale: 1.02, boxShadow: "0px 10px 20px -5px rgba(0, 0, 0, 0.1)" } : {}}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
                   <div className="flex flex-col gap-3">
                     {/* Company Logo */}
                     {experience.logoUrl && (
                       <div className="flex justify-start mb-2">
-                        <div className="relative w-12 h-12 overflow-hidden rounded-md bg-white shadow-sm">
+                        <motion.div 
+                          className="relative w-12 h-12 overflow-hidden rounded-md bg-white shadow-sm"
+                          whileHover={{ scale: 1.08, transition: { type: "spring", stiffness: 300 } }}
+                        >
                           <Image 
                             src={experience.logoUrl} 
                             alt={`${experience.company} logo`} 
@@ -101,7 +106,7 @@ export default function Experience() {
                             style={{ objectFit: 'contain' }}
                             className="p-1"
                           />
-                        </div>
+                        </motion.div>
                       </div>
                     )}
                     
@@ -197,10 +202,15 @@ export default function Experience() {
                       whileTap={{ scale: 0.97 }}
                     >
                       <span>Show details</span>
-                      <ChevronDown className="w-4 h-4" />
+                      <motion.span
+                        animate={{ rotate: expandedId === index ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </motion.span>
                     </motion.button>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
