@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Send, ArrowRight, Phone, MapPin, Clock } from 'lucide-react';
+import { SiNotion, SiMedium } from 'react-icons/si';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -352,7 +353,23 @@ export default function Contact() {
                   <span className="font-medium">LinkedIn</span>
                 </motion.a>
                 <motion.a 
-                  href="mailto:ayushaggarwal1136@gmail.com" 
+                  href="https://knowing-spoonbill-268.notion.site/Welcome-to-Ayush-s-Notion-World-833e75a9a45b43d0b73971bf5402ff9d" target="_blank" rel="noopener noreferrer" 
+                  className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
+                  whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                >
+                  <SiNotion className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
+                  <span className="font-medium">Notion</span>
+                </motion.a>
+                <motion.a 
+                  href="https://medium.com/@ayushaggarwal1136" target="_blank" rel="noopener noreferrer" 
+                  className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
+                  whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                >
+                  <SiMedium className="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors" />
+                  <span className="font-medium">Medium</span>
+                </motion.a>
+                <motion.a 
+                  href="mailto:ayushaggarwal1136@gmail.com"
                   className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
                   whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >

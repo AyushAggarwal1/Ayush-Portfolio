@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, MapPin, ChevronDown, Briefcase, Calendar } from 'lucide-react';
+import { ExternalLink, MapPin, ChevronDown, Briefcase, Calendar, Download } from 'lucide-react';
 import Image from 'next/image';
 import { experiences } from '@/lib/data';
 
@@ -69,6 +69,17 @@ export default function Experience() {
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             My journey as a product manager and my contributions to various organizations.
           </p>
+          <motion.a
+            href="https://drive.google.com/file/d/1t6FbgrqEdGy6Nc5lOfHMpaxHR0NHV2Yv/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 mt-6 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white rounded-lg transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Download className="w-4 h-4" />
+            <span>Download Resume</span>
+          </motion.a>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">

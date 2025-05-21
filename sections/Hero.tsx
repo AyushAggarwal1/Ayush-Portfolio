@@ -326,11 +326,13 @@ export default function Hero() {
             >
               <Link
                 href="/#projects"
-                className="btn-primary group"
+                className="btn-primary group relative overflow-hidden"
               >
-                <Briefcase className="w-5 h-5 relative z-10" />
-                <span className="relative z-10 font-medium">View My Work</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
+                <span className="relative z-10 flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110" />
+                  <span className="font-medium">View My Work</span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-700 dark:to-blue-800 translate-y-full transition-transform duration-300 group-hover:translate-y-0 z-0"></span>
               </Link>
               <motion.button
                 onClick={() => {
