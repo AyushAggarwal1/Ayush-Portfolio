@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, MapPin, ChevronDown, Briefcase, Calendar } from 'lucide-react';
+import { ExternalLink, MapPin, ChevronDown, Briefcase, Calendar, Download } from 'lucide-react';
 import Image from 'next/image';
 import { experiences } from '@/lib/data';
 
@@ -47,10 +47,10 @@ export default function Experience() {
 
   return (
     <section id="experience" className="relative py-20 overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 -z-10 bg-grid bg-gray-50 dark:bg-gray-900/50" />
-      <div className="absolute -left-20 top-40 w-72 h-72 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-800/10 dark:to-purple-800/10 rounded-full blur-3xl" />
-      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-gradient-to-br from-blue-100/50 to-pink-100/50 dark:from-blue-800/10 dark:to-pink-800/10 rounded-full blur-3xl" />
+      {/* Enhanced Background decorations */}
+      <div className="absolute inset-0 -z-10 bg-grid bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900/50 dark:via-gray-900/80 dark:to-gray-900/50" />
+      <div className="absolute -left-20 top-40 w-72 h-72 bg-gradient-to-br from-blue-200/40 via-purple-200/40 to-pink-200/40 dark:from-blue-800/20 dark:via-purple-800/20 dark:to-pink-800/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute -right-20 bottom-40 w-80 h-80 bg-gradient-to-br from-blue-200/40 via-purple-200/40 to-pink-200/40 dark:from-blue-800/20 dark:via-purple-800/20 dark:to-pink-800/20 rounded-full blur-3xl animate-pulse" />
       
       <div className="container relative mx-auto px-4 md:px-6">
         <motion.div
@@ -60,15 +60,29 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="inline-block px-3 py-1 mb-4 text-sm font-medium text-secondary-600 dark:text-secondary-400 bg-secondary-50 dark:bg-secondary-900/30 rounded-full">
+          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/20 dark:via-purple-500/20 dark:to-pink-500/20 text-gradient-primary rounded-full border border-blue-100 dark:border-blue-800/30">
             Career Journey
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             Professional Experience
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             My journey as a product manager and my contributions to various organizations.
           </p>
+          <motion.a
+            href="https://drive.google.com/file/d/1t6FbgrqEdGy6Nc5lOfHMpaxHR0NHV2Yv/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden inline-flex items-center gap-2 px-6 py-2.5 mt-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-lg transition-all duration-300 shadow-md hover:shadow-xl"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.span 
+              className="absolute inset-0 w-full h-full bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+            <Download className="w-4 h-4 relative z-10" />
+            <span className="relative z-10">Download Resume</span>
+          </motion.a>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
