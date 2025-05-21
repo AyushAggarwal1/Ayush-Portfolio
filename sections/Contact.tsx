@@ -305,7 +305,7 @@ export default function Contact() {
                 </motion.a>
                 
                 <motion.a 
-                  href="tel:+11234567890" 
+                  href="tel:+919625076091" 
                   className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
                   variants={itemVariants}
                 >
@@ -345,7 +345,7 @@ export default function Contact() {
                   <span className="font-medium">GitHub</span>
                 </motion.a>
                 <motion.a 
-                  href="https://www.linkedin.com/in/ayush-aggarwal-product-manager/" target="_blank" rel="noopener noreferrer" 
+                  href="https://www.linkedin.com/in/ayushaggarwalin" target="_blank" rel="noopener noreferrer" 
                   className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors group"
                   whileHover={{ x: 3, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 >
