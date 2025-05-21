@@ -6,6 +6,17 @@ import { skills as allSkillsData } from '@/lib/data'; // Renamed to avoid confli
 import { SkillType } from '@/types'; // Import SkillType
 import { ShieldCheck, Users, Code, BarChart, Zap, PenTool, Brain, Star, Info } from 'lucide-react'; // Added Star, Info
 
+// Animation variants
+const categoryItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 80 }
+  }
+};
+
 // Helper to get category icon
 const getCategoryIcon = (categoryName: string): React.ReactElement => {
   switch (categoryName) {
@@ -19,7 +30,7 @@ const getCategoryIcon = (categoryName: string): React.ReactElement => {
   }
 };
 
-// Group skills by category from the new data structure
+// Group skills by category
 const skillGroups = allSkillsData.reduce((acc, skill) => {
   const category = skill.category;
   if (!acc[category]) {
@@ -43,12 +54,12 @@ interface SkillBubbleProps {
 }
 
 const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCategory }) => {
-  const angle = (index / totalSkillsInCategory) * 2 * Math.PI; // Distribute skills in a circle
-  const radius = totalSkillsInCategory > 4 ? 80 : 60; // Adjust radius based on number of skills
+  const angle = (index / totalSkillsInCategory) * 2 * Math.PI;
+  const radius = totalSkillsInCategory > 4 ? 90 : 70; // Increased radius
   const delay = index * 0.1;
   
-  // Create unique float animation for each bubble
-  const floatY = Math.sin(index) * 10;
+  // Enhanced float animation
+  const floatY = Math.sin(index) * 12; // Increased amplitude
   const floatDuration = 3 + Math.random() * 2;
   const floatDelay = Math.random() * 2;
 
@@ -70,11 +81,11 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCa
         delay: 0.5 + delay 
       }}
       whileHover={{
-        scale: 1.2, 
+        scale: 1.2,
         zIndex: 10,
-        rotate: [0, -5, 5, -5, 0], 
-        transition: { 
-          duration: 0.4, 
+        rotate: [0, -5, 5, -5, 0],
+        transition: {
+          duration: 0.4,
           ease: "easeInOut",
           rotate: {
             duration: 0.4,
@@ -86,7 +97,7 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCa
       }}
     >
       <motion.span
-        className="px-3 py-1.5 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700/50 dark:to-gray-800/50 text-gray-800 dark:text-gray-200 text-sm font-medium cursor-default shadow-sm hover:shadow-md transition-shadow"
+        className="relative px-4 py-2 rounded-xl bg-gradient-to-r from-white/80 to-white/40 dark:from-gray-800/80 dark:to-gray-800/40 text-gray-800 dark:text-gray-200 text-sm font-medium cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
         animate={{
           y: [0, floatY, 0],
           rotate: [0, 3, 0, -3, 0],
@@ -108,36 +119,46 @@ const SkillBubble: React.FC<SkillBubbleProps> = ({ skill, index, totalSkillsInCa
           }
         }}
       >
-        <span className="relative z-10">
+        <span className="relative z-10 whitespace-nowrap">
           {skill.name}
         </span>
         <motion.span 
-          className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full -z-10 opacity-0"
-          animate={{ opacity: 0 }}
+          className="absolute inset-0 bg-gradient-to-r from-blue-100/50 via-purple-100/50 to-pink-100/50 dark:from-blue-500/20 dark:via-purple-500/20 dark:to-pink-500/20 rounded-xl -z-10 opacity-0 backdrop-blur-sm"
           whileHover={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
         />
       </motion.span>
 
-      {/* Tooltip */} 
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs p-2.5 bg-gray-800 dark:bg-gray-900 text-white text-xs rounded-md shadow-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-20">
+      {/* Enhanced Tooltip */}
+      <motion.div 
+        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-xs p-4 bg-gradient-to-br from-gray-800/95 via-gray-900/95 to-gray-800/95 dark:from-gray-900/95 dark:via-black/95 dark:to-gray-900/95 text-white text-xs rounded-xl shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-20 backdrop-blur-md border border-gray-700/50"
+        initial={{ y: 10, opacity: 0 }}
+        whileHover={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.2 }}
+      >
         {skill.proficiency && (
-          <div className="flex items-center mb-1">
-            <Star className="w-3 h-3 mr-1.5 text-yellow-400" /> 
-            <span className="font-semibold">{skill.proficiency}</span>
+          <div className="flex items-center mb-2.5">
+            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 flex items-center justify-center mr-2 shadow-lg">
+              <Star className="w-3 h-3 text-white" />
+            </div>
+            <span className="font-semibold bg-gradient-to-r from-yellow-200 to-amber-200 bg-clip-text text-transparent">
+              {skill.proficiency}
+            </span>
           </div>
         )}
         {skill.description && (
           <div className="flex items-start">
-            <Info className="w-3 h-3 mr-1.5 mt-0.5 text-blue-400 flex-shrink-0" />
-            <span>{skill.description}</span>
+            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center mr-2 mt-0.5 shadow-lg">
+              <Info className="w-3 h-3 text-white" />
+            </div>
+            <span className="text-gray-200 leading-relaxed">{skill.description}</span>
           </div>
         )}
         {!skill.proficiency && !skill.description && (
-          <span>More details coming soon.</span>
+          <span className="text-gray-400 italic">More details coming soon...</span>
         )}
-        <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-gray-800 dark:bg-gray-900"></div>
-      </div>
+        <div className="absolute bottom-[-8px] left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-gray-900/95 border-b border-r border-gray-700/50"></div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -156,17 +177,6 @@ export default function Skills() {
     }
   };
 
-  const categoryItemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 80 }
-    }
-  };
-
-  // New animation for the orbiting container
   const orbitAnimation = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { 
@@ -181,7 +191,6 @@ export default function Skills() {
     }
   };
 
-  // New floating particle component for decoration
   const FloatingParticle = ({ size, color, delay, left, top }: { 
     size: number, 
     color: string, 
@@ -220,25 +229,26 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="relative py-24 md:py-32 overflow-hidden bg-gray-50 dark:bg-gray-900/60">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10 bg-grid bg-gray-50 dark:bg-gray-900/50" />
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary-500/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-500/30 to-transparent" />
+    <section id="skills" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gray-50/80 via-white to-gray-50/80 dark:from-gray-900/60 dark:via-gray-900/80 dark:to-gray-900/60">
+      {/* Enhanced background elements */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_500px_at_50%_200px,rgba(147,197,253,0.1),transparent)]" />
+      <div className="absolute inset-0 -z-10 bg-grid opacity-50 dark:opacity-30" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500/30 to-transparent" />
       
-      {/* Animated background dots */}
+      {/* Enhanced animated background dots */}
       <div className="absolute inset-0 -z-5">
-        <div className="absolute top-20 right-20 w-3 h-3 rounded-full bg-secondary-400/30 animate-pulse-slow" style={{ animationDelay: '0s' }} />
-        <div className="absolute top-60 left-40 w-2 h-2 rounded-full bg-accent-500/20 animate-pulse-slow" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-40 right-1/4 w-2 h-2 rounded-full bg-blue-600/20 animate-pulse-slow" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-20 left-1/3 w-3 h-3 rounded-full bg-secondary-300/30 animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-20 right-20 w-4 h-4 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 animate-pulse-slow" style={{ animationDelay: '0s' }} />
+        <div className="absolute top-60 left-40 w-3 h-3 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 animate-pulse-slow" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-40 right-1/4 w-3 h-3 rounded-full bg-gradient-to-br from-pink-600/20 to-blue-600/20 animate-pulse-slow" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-20 left-1/3 w-4 h-4 rounded-full bg-gradient-to-br from-blue-300/30 to-purple-300/30 animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
         
-        {/* Additional floating particles */}
-        <FloatingParticle size={4} color="rgba(139, 92, 246, 0.3)" delay={0.2} left="10%" top="30%" />
-        <FloatingParticle size={6} color="rgba(236, 72, 153, 0.2)" delay={1.3} left="85%" top="25%" />
-        <FloatingParticle size={5} color="rgba(59, 130, 246, 0.25)" delay={0.7} left="20%" top="75%" />
-        <FloatingParticle size={3} color="rgba(236, 72, 153, 0.2)" delay={2.1} left="75%" top="85%" />
-        <FloatingParticle size={7} color="rgba(139, 92, 246, 0.15)" delay={1.5} left="60%" top="15%" />
+        {/* Enhanced floating particles */}
+        <FloatingParticle size={5} color="rgba(139, 92, 246, 0.4)" delay={0.2} left="10%" top="30%" />
+        <FloatingParticle size={7} color="rgba(236, 72, 153, 0.3)" delay={1.3} left="85%" top="25%" />
+        <FloatingParticle size={6} color="rgba(59, 130, 246, 0.35)" delay={0.7} left="20%" top="75%" />
+        <FloatingParticle size={4} color="rgba(236, 72, 153, 0.3)" delay={2.1} left="75%" top="85%" />
+        <FloatingParticle size={8} color="rgba(139, 92, 246, 0.25)" delay={1.5} left="60%" top="15%" />
       </div>
       
       <div className="container mx-auto px-4 md:px-6">
@@ -250,7 +260,7 @@ export default function Skills() {
           className="mb-16 md:mb-20 text-center"
         >
           <motion.span 
-            className="inline-block px-3.5 py-1.5 mb-5 text-sm font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/40 rounded-full tracking-wide"
+            className="inline-block px-4 py-1.5 mb-5 text-sm font-semibold bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/20 dark:via-purple-500/20 dark:to-pink-500/20 text-gradient-primary rounded-full border border-purple-100 dark:border-purple-800/30 tracking-wide"
             initial={{ opacity: 0, scale: 0, y: -20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
@@ -258,7 +268,7 @@ export default function Skills() {
           >
             My Expertise
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-5">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-5">
             Skills & Capabilities
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
@@ -268,7 +278,7 @@ export default function Skills() {
 
         <div ref={ref} className="max-w-7xl mx-auto">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" // Increased gap
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "show" : "hidden"}
@@ -277,52 +287,29 @@ export default function Skills() {
               <motion.div
                 key={group.name}
                 variants={categoryItemVariants}
-                className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800/80 dark:to-gray-900/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 md:p-8 min-h-[280px] flex flex-col items-center justify-center text-center overflow-visible transform-gpu"
+                className="relative bg-gradient-to-br from-white/80 via-white/90 to-white/80 dark:from-gray-800/80 dark:via-gray-800/90 dark:to-gray-900/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 md:p-8 min-h-[320px] flex flex-col items-center justify-start text-center overflow-visible transform-gpu border border-white/20 dark:border-gray-700/20"
                 whileHover={{
-                  scale: 1.03,
+                  scale: 1.02,
                   y: -5,
-                  filter: "brightness(1.05)",
-                  boxShadow: "0px 20px 40px -10px rgba(0, 0, 0, 0.15), 0px 10px 20px -10px rgba(0, 0, 0, 0.1)",
                   transition: { type: "spring", stiffness: 300, damping: 15 }
                 }}
               >
-                {/* Top right decorative element */}
-                <motion.div 
-                  className="absolute top-3 right-3 w-3 h-3 rounded-full"
-                  style={{ 
-                    background: groupIndex % 3 === 0 
-                      ? "linear-gradient(to right, #3b82f6, #2563eb)" 
-                      : groupIndex % 3 === 1 
-                        ? "linear-gradient(to right, #8b5cf6, #7c3aed)" 
-                        : "linear-gradient(to right, #ec4899, #db2777)",
-                  }}
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: groupIndex * 0.3
-                  }}
-                />
-
                 {/* Category Header */}
                 <div className="mb-8 relative">
                   <motion.div 
-                    className="inline-flex items-center justify-center p-3 rounded-full bg-gradient-to-r from-teal-100 to-blue-100 dark:from-teal-900/40 dark:to-blue-900/40 text-teal-600 dark:text-teal-400 mb-3 shadow-sm"
+                    className="inline-flex items-center justify-center p-3 rounded-full bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-pink-900/40 text-blue-600 dark:text-blue-400 mb-3 shadow-md"
                     whileHover={{ 
-                      rotate: [0, -5, 5, -5, 0],
+                      scale: 1.1,
+                      rotate: [0, -10, 10, -10, 0],
                       transition: { duration: 0.5 }
                     }}
                   >
                     {group.icon}
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
                     {group.name}
                   </h3>
                   
-                  {/* Animated underline */}
                   <motion.div 
                     className="h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent mt-2 mx-auto"
                     initial={{ width: 0, opacity: 0 }}
@@ -332,9 +319,9 @@ export default function Skills() {
                   />
                 </div>
 
-                {/* Skill Bubbles Orbiting Container */}
+                {/* Skills Container */}
                 <motion.div 
-                  className="relative w-full h-40 flex items-center justify-center"
+                  className="relative w-full h-48 flex items-center justify-center"
                   variants={orbitAnimation}
                   initial="hidden"
                   whileInView="visible"
